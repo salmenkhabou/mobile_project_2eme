@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Splash Screen - Large Screen Responsive -->
+    <dimen name="splash_icon_size">120sp</dimen>
+    <dimen name="splash_title_size">48sp</dimen>
+    <dimen name="splash_subtitle_size">24sp</dimen>
+</resources>

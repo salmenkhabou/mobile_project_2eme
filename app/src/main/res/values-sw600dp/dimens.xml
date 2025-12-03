@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Responsive Spacing for Tablets (600dp+) -->
+    <dimen name="layout_padding">16dp</dimen>
+    <dimen name="card_margin">6dp</dimen>
+    <dimen name="card_margin_bottom">12dp</dimen>
+    <dimen name="section_margin_top">20dp</dimen>
+    <dimen name="section_margin_bottom">12dp</dimen>
+    
+    <!-- Card Heights - Larger for tablets -->
+    <dimen name="header_card_min_height">100dp</dimen>
+    <dimen name="metric_card_height">150dp</dimen>
+    <dimen name="metric_card_compact_height">110dp</dimen>
+    <dimen name="action_card_height">85dp</dimen>
+    <dimen name="sleep_card_height">130dp</dimen>
+    
+    <!-- Text Sizes - Larger for tablets -->
+    <dimen name="header_text_size">22sp</dimen>
+    <dimen name="metric_title_text_size">15sp</dimen>
+    <dimen name="metric_value_text_size">28sp</dimen>
+    <dimen name="section_title_text_size">20sp</dimen>
+    <dimen name="button_text_size">13sp</dimen>
+    
+    <!-- Icon Sizes -->
+    <dimen name="emoji_icon_size">28sp</dimen>
+    <dimen name="emoji_icon_large_size">32sp</dimen>
+    
+    <!-- Paddings - More generous for tablets -->
+    <dimen name="card_padding">16dp</dimen>
+    <dimen name="header_card_padding">24dp</dimen>
+    <dimen name="button_padding_vertical">6dp</dimen>
+    <dimen name="button_padding_horizontal">16dp</dimen>
+</resources>

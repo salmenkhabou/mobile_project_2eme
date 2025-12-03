@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Splash Screen - Tablet Responsive -->
+    <dimen name="splash_icon_size">96sp</dimen>
+    <dimen name="splash_title_size">40sp</dimen>
+    <dimen name="splash_subtitle_size">22sp</dimen>
+</resources>

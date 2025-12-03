@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Health Tracker</string>
+    <string name="welcome_message">Bienvenue dans votre tracker de santé</string>
+    <string name="start_app">Commencer</string>
+    <string name="dashboard_title">Tableau de bord</string>
+    <string name="calendar_title">Calendrier</string>
+    <string name="detail_title">Détails</string>
+    <string name="steps_label">Pas</string>
+    <string name="calories_label">Calories</string>
+    <string name="sleep_label">Sommeil</string>
+    <string name="view_more">Voir plus</string>
+    <string name="add_data">Ajouter des données</string>
+    <string name="select_date">Sélectionner une date</string>
+    <string name="activities_for_date">Activités du jour</string>
+    <string name="current_value">Valeur actuelle</string>
+    <string name="goal_label">Objectif</string>
+    <string name="progress_chart">Évolution sur 7 jours</string>
+</resources>

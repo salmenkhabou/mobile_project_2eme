@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Base colors -->
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    
+    <!-- Health & Wellness Theme Colors -->
+    <!-- Primary green palette - represents growth, health, nature -->
+    <color name="primary_green">#4CAF50</color>
+    <color name="primary_green_dark">#388E3C</color>
+    <color name="primary_green_light">#81C784</color>
+    <color name="primary_green_lighter">#C8E6C9</color>
+    <color name="primary_green_lightest">#E8F5E8</color>
+    
+    <!-- Secondary blue palette - represents trust, calm, hydration -->
+    <color name="secondary_blue">#2196F3</color>
+    <color name="secondary_blue_dark">#1976D2</color>
+    <color name="secondary_blue_light">#64B5F6</color>
+    <color name="secondary_blue_lighter">#BBDEFB</color>
+    <color name="secondary_blue_lightest">#E3F2FD</color>
+    
+    <!-- Accent orange palette - represents energy, activity -->
+    <color name="accent_orange">#FF9800</color>
+    <color name="accent_orange_dark">#F57C00</color>
+    <color name="accent_orange_light">#FFB74D</color>
+    <color name="accent_orange_lighter">#FFCC02</color>
+    <color name="accent_orange_lightest">#FFF3E0</color>
+    
+    <!-- Neutral palette - for backgrounds and text -->
+    <color name="background_light">#FAFAFA</color>
+    <color name="background_card">#FFFFFF</color>
+    <color name="surface_light">#F5F5F5</color>
+    <color name="divider_light">#E0E0E0</color>
+    
+    <!-- Text colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_tertiary">#9E9E9E</color>
+    <color name="text_on_primary">#FFFFFF</color>
+    
+    <!-- Status colors -->
+    <color name="success_green">#4CAF50</color>
+    <color name="warning_amber">#FF9800</color>
+    <color name="error_red">#F44336</color>
+    <color name="info_blue">#2196F3</color>
+    
+    <!-- Special health metrics colors -->
+    <color name="steps_color">#4CAF50</color>          <!-- Green for steps -->
+    <color name="calories_color">#FF9800</color>       <!-- Orange for calories -->
+    <color name="sleep_color">#3F51B5</color>          <!-- Indigo for sleep -->
+    <color name="heart_color">#E91E63</color>          <!-- Pink for heart rate -->
+    <color name="water_color">#03A9F4</color>          <!-- Light blue for water -->
+    <color name="nutrition_color">#8BC34A</color>      <!-- Light green for nutrition -->
+</resources>

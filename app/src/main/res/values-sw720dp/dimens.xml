@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Responsive Spacing for Large Screens (720dp+) -->
+    <dimen name="layout_padding">24dp</dimen>
+    <dimen name="card_margin">8dp</dimen>
+    <dimen name="card_margin_bottom">16dp</dimen>
+    <dimen name="section_margin_top">24dp</dimen>
+    <dimen name="section_margin_bottom">16dp</dimen>
+    
+    <!-- Card Heights - Larger for big screens -->
+    <dimen name="header_card_min_height">120dp</dimen>
+    <dimen name="metric_card_height">180dp</dimen>
+    <dimen name="metric_card_compact_height">130dp</dimen>
+    <dimen name="action_card_height">100dp</dimen>
+    <dimen name="sleep_card_height">150dp</dimen>
+    
+    <!-- Text Sizes - Larger for big screens -->
+    <dimen name="header_text_size">24sp</dimen>
+    <dimen name="metric_title_text_size">16sp</dimen>
+    <dimen name="metric_value_text_size">32sp</dimen>
+    <dimen name="section_title_text_size">22sp</dimen>
+    <dimen name="button_text_size">14sp</dimen>
+    
+    <!-- Icon Sizes -->
+    <dimen name="emoji_icon_size">32sp</dimen>
+    <dimen name="emoji_icon_large_size">36sp</dimen>
+    
+    <!-- Paddings - Generous for large screens -->
+    <dimen name="card_padding">20dp</dimen>
+    <dimen name="header_card_padding">28dp</dimen>
+    <dimen name="button_padding_vertical">8dp</dimen>
+    <dimen name="button_padding_horizontal">20dp</dimen>
+</resources>

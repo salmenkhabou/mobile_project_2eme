@@ -1,0 +1,85 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme with health & wellness colors -->
+    <style name="Base.Theme.Projet_android" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Primary colors -->
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="colorPrimaryVariant">@color/primary_green_dark</item>
+        <item name="colorOnPrimary">@color/text_on_primary</item>
+        
+        <!-- Secondary colors -->
+        <item name="colorSecondary">@color/secondary_blue</item>
+        <item name="colorSecondaryVariant">@color/secondary_blue_dark</item>
+        <item name="colorOnSecondary">@color/text_on_primary</item>
+        
+        <!-- Background colors -->
+        <item name="android:colorBackground">@color/background_light</item>
+        <item name="colorSurface">@color/background_card</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+        
+        <!-- Accent color -->
+        <item name="colorAccent">@color/accent_orange</item>
+        
+        <!-- Status bar -->
+        <item name="android:statusBarColor">@color/primary_green_dark</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+
+    <style name="Theme.Projet_android" parent="Base.Theme.Projet_android" />
+    
+    <!-- Custom button styles for health metrics - Responsive -->
+    <style name="HealthMetricButton" parent="Widget.Material3.Button.TextButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">@dimen/button_text_size</item>
+        <item name="android:paddingHorizontal">@dimen/button_padding_horizontal</item>
+        <item name="android:paddingVertical">@dimen/button_padding_vertical</item>
+        <item name="backgroundTint">@color/primary_green_lightest</item>
+        <item name="android:textColor">@color/primary_green_dark</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
+    
+    <!-- Card style for health metrics - Responsive -->
+    <style name="HealthMetricCard">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/metric_card_height</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="cardBackgroundColor">@color/background_card</item>
+    </style>
+    
+    <!-- Compact card style for smaller elements - Responsive -->
+    <style name="HealthMetricCardCompact">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/metric_card_compact_height</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">3dp</item>
+        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="cardBackgroundColor">@color/background_card</item>
+    </style>
+    
+    <!-- Header card style - Responsive -->
+    <style name="HealthHeaderCard">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/header_card_min_height</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">6dp</item>
+        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="cardBackgroundColor">@color/primary_green</item>
+    </style>
+    
+    <!-- Action card style - Responsive -->
+    <style name="HealthActionCard">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/action_card_height</item>
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="cardBackgroundColor">@color/surface_light</item>
+    </style>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Splash Screen - Phone Default -->
+    <dimen name="splash_icon_size">72sp</dimen>
+    <dimen name="splash_title_size">32sp</dimen>
+    <dimen name="splash_subtitle_size">16sp</dimen>
+</resources>
