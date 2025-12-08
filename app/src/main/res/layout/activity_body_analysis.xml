@@ -1,0 +1,554 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".BodyAnalysisActivity">
+
+    <!-- Modern App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/surface"
+            app:title="Body Analysis"
+            app:titleTextColor="@color/on_surface"
+            app:titleTextAppearance="@style/Text.Headline.Medium"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/on_surface" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/layout_padding">            <!-- Modern Health Dashboard Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardHealthDashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/section_spacing"
+                style="@style/Card.Primary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/content_padding"
+                    android:background="@drawable/header_gradient">
+
+                    <!-- Health Score with Icon -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/space_lg">
+
+                        <ImageView
+                            android:id="@+id/imgBodyStatus"
+                            android:layout_width="@dimen/icon_size_xlarge"
+                            android:layout_height="@dimen/icon_size_xlarge"
+                            android:src="@drawable/ic_body_good"
+                            app:tint="@color/primary"
+                            android:layout_marginEnd="@dimen/space_md" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Health Score"
+                                android:textAppearance="@style/Text.Label.Large"
+                                android:textColor="@color/on_primary_container" />
+
+                            <TextView
+                                android:id="@+id/tvHealthScore"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="85/100"
+                                android:textAppearance="@style/Text.Display.Medium"
+                                android:textColor="@color/on_primary_container"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- BMI Section -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/space_md">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="BMI"
+                                android:textAppearance="@style/Text.Title.Medium"
+                                android:textColor="@color/on_primary_container" />
+
+                            <TextView
+                                android:id="@+id/tvBMI"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="24.2"
+                                android:textAppearance="@style/Text.Display.Large"
+                                android:textColor="@color/on_primary_container"
+                                android:textStyle="bold"
+                                android:layout_marginTop="@dimen/space_xs" />
+
+                            <TextView
+                                android:id="@+id/tvBMICategory"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Normal Weight"
+                                android:textAppearance="@style/Text.Body.Small"
+                                android:textColor="@color/on_primary_container"
+                                android:layout_marginTop="@dimen/space_xs" />
+
+                        </LinearLayout>
+
+                        <!-- BMI Progress Bar -->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/space_lg">
+
+                            <ProgressBar
+                                android:id="@+id/progressBMI"
+                                style="?android:attr/progressBarStyleHorizontal"
+                                android:layout_width="match_parent"
+                                android:layout_height="12dp"
+                                android:max="100"
+                                android:progress="65"
+                                android:progressTint="@color/accent"
+                                android:progressBackgroundTint="@color/outline_variant" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Healthy Range"
+                                android:textAppearance="@style/Text.Label.Small"
+                                android:textColor="@color/on_primary_container"
+                                android:layout_marginTop="@dimen/space_xs" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- Last Update -->
+                    <TextView
+                        android:id="@+id/tvLastUpdate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Updated: Nov 28"
+                        android:textAppearance="@style/Text.Body.Small"
+                        android:textColor="@color/on_primary_container"
+                        android:drawableStart="@drawable/ic_schedule"
+                        android:drawableTint="@color/on_primary_container"
+                        android:drawablePadding="@dimen/space_xs"
+                        android:gravity="center_vertical" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>            <!-- Modern Measurements Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMeasurements"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/section_spacing"
+                style="@style/Card.Primary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/content_padding">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Body Measurements"
+                        android:textAppearance="@style/Text.Headline.Small"
+                        android:textColor="@color/on_surface"
+                        android:layout_marginBottom="@dimen/space_lg" />
+
+                    <!-- Weight Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/space_md"
+                        android:background="@drawable/metric_background"
+                        android:padding="@dimen/space_md">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_large"
+                            android:layout_height="@dimen/icon_size_large"
+                            android:src="@drawable/ic_scale"
+                            app:tint="@color/primary"
+                            android:layout_marginEnd="@dimen/space_md" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Weight"
+                                android:textAppearance="@style/Text.Label.Medium"
+                                android:textColor="@color/on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvWeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Not set"
+                                android:textAppearance="@style/Text.Body.Large"
+                                android:textColor="@color/on_surface"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnEditWeight"
+                            style="@style/Widget.Material3.Button.IconButton"
+                            android:layout_width="@dimen/button_icon_size"
+                            android:layout_height="@dimen/button_icon_size"
+                            app:icon="@drawable/ic_edit"
+                            app:iconTint="@color/primary"
+                            app:iconSize="@dimen/icon_size_medium" />
+
+                    </LinearLayout>
+
+                    <!-- Height Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/space_md"
+                        android:background="@drawable/metric_background"
+                        android:padding="@dimen/space_md">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_large"
+                            android:layout_height="@dimen/icon_size_large"
+                            android:src="@drawable/ic_height"
+                            app:tint="@color/primary"
+                            android:layout_marginEnd="@dimen/space_md" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Height"
+                                android:textAppearance="@style/Text.Label.Medium"
+                                android:textColor="@color/on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvHeight"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Not set"
+                                android:textAppearance="@style/Text.Body.Large"
+                                android:textColor="@color/on_surface"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnEditHeight"
+                            style="@style/Widget.Material3.Button.IconButton"
+                            android:layout_width="@dimen/button_icon_size"
+                            android:layout_height="@dimen/button_icon_size"
+                            app:icon="@drawable/ic_edit"
+                            app:iconTint="@color/primary"
+                            app:iconSize="@dimen/icon_size_medium" />
+
+                    </LinearLayout>
+
+                    <!-- Body Fat Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/space_md"
+                        android:background="@drawable/metric_background"
+                        android:padding="@dimen/space_md">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_large"
+                            android:layout_height="@dimen/icon_size_large"
+                            android:src="@drawable/ic_body_fat"
+                            app:tint="@color/primary"
+                            android:layout_marginEnd="@dimen/space_md" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Body Fat"
+                                android:textAppearance="@style/Text.Label.Medium"
+                                android:textColor="@color/on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvBodyFat"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Not set"
+                                android:textAppearance="@style/Text.Body.Large"
+                                android:textColor="@color/on_surface"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnEditBodyFat"
+                            style="@style/Widget.Material3.Button.IconButton"
+                            android:layout_width="@dimen/button_icon_size"
+                            android:layout_height="@dimen/button_icon_size"
+                            app:icon="@drawable/ic_edit"
+                            app:iconTint="@color/primary"
+                            app:iconSize="@dimen/icon_size_medium" />
+
+                    </LinearLayout>
+
+                    <!-- Muscle Mass Row -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/metric_background"
+                        android:padding="@dimen/space_md">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_large"
+                            android:layout_height="@dimen/icon_size_large"
+                            android:src="@drawable/ic_muscle"
+                            app:tint="@color/primary"
+                            android:layout_marginEnd="@dimen/space_md" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Muscle Mass (Est.)"
+                                android:textAppearance="@style/Text.Label.Medium"
+                                android:textColor="@color/on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tvMuscleMass"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Not set"
+                                android:textAppearance="@style/Text.Body.Large"
+                                android:textColor="@color/on_surface"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_medium"
+                            android:layout_height="@dimen/icon_size_medium"
+                            android:src="@drawable/ic_info"
+                            app:tint="@color/on_surface_variant"
+                            android:alpha="0.6" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Modern Goals Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardGoals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/section_spacing"
+                style="@style/Card.Primary"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/content_padding">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/space_md">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Weight Goal Progress"
+                            android:textAppearance="@style/Text.Headline.Small"
+                            android:textColor="@color/on_surface" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_medium"
+                            android:layout_height="@dimen/icon_size_medium"
+                            android:src="@drawable/ic_target"
+                            app:tint="@color/primary" />
+
+                    </LinearLayout>
+
+                    <!-- Weight Goal -->
+                    <TextView
+                        android:id="@+id/tvWeightGoal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No goal set"
+                        android:textAppearance="@style/Text.Body.Medium"
+                        android:textColor="@color/on_surface_variant"
+                        android:layout_marginBottom="@dimen/space_xs" />
+
+                    <!-- Progress to Goal -->
+                    <TextView
+                        android:id="@+id/tvProgressToGoal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Set a weight goal"
+                        android:textAppearance="@style/Text.Body.Medium"
+                        android:textColor="@color/on_surface_variant"
+                        android:layout_marginBottom="@dimen/space_md" />
+
+                    <!-- Goal Progress Bar -->
+                    <ProgressBar
+                        android:id="@+id/progressWeightGoal"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="12dp"
+                        android:progressTint="@color/success"
+                        android:progressBackgroundTint="@color/outline_variant"
+                        android:max="100"
+                        android:progress="0" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Modern Action Buttons -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnUpdateMeasurements"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_md"
+                android:text="Quick Update"
+                android:textAppearance="@style/Text.Label.Large"
+                style="@style/Button.Primary"
+                app:icon="@drawable/ic_edit"
+                app:iconGravity="textStart" />
+
+            <!-- Action Buttons Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                android:layout_marginBottom="@dimen/space_lg">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnGoals"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/space_xs"
+                    android:text="Goals"
+                    android:textAppearance="@style/Text.Label.Medium"
+                    style="@style/Button.Secondary"
+                    app:icon="@drawable/ic_target"
+                    app:iconGravity="top" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnHistory"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="@dimen/space_xs"
+                    android:text="History"
+                    android:textAppearance="@style/Text.Label.Medium"
+                    style="@style/Button.Secondary"
+                    app:icon="@drawable/ic_history"
+                    app:iconGravity="top" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnTips"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/space_xs"
+                    android:text="Tips"
+                    android:textAppearance="@style/Text.Label.Medium"
+                    style="@style/Button.Secondary"
+                    app:icon="@drawable/ic_tips"
+                    app:iconGravity="top" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

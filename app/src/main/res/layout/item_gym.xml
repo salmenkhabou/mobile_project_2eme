@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardGym"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Header Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginBottom="12dp">
+
+            <!-- Gym Icon -->
+            <ImageView
+                android:id="@+id/imgGymIcon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_gym_default"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/background_score_circle"
+                android:padding="8dp" />
+
+            <!-- Gym Info -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <!-- Gym Name -->
+                <TextView
+                    android:id="@+id/tvGymName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FitnessPark Central"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary"
+                    tools:text="FitnessPark Central" />
+
+                <!-- Gym Type and Status -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="2dp">
+
+                    <TextView
+                        android:id="@+id/tvGymType"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Privé"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_secondary"
+                        android:background="@drawable/background_chip_type"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="2dp"
+                        tools:text="Privé" />
+
+                    <TextView
+                        android:id="@+id/tvGymStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ouvert"
+                        android:textSize="12sp"
+                        android:textColor="@color/primary_green"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp"
+                        tools:text="Ouvert" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Distance and Rating -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <!-- Distance -->
+                <TextView
+                    android:id="@+id/tvGymDistance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.2 km"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/primary_blue"
+                    tools:text="1.2 km" />
+
+                <!-- Rating -->
+                <TextView
+                    android:id="@+id/tvGymRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4.5"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/white"
+                    android:background="@drawable/button_rounded_primary"
+                    android:paddingHorizontal="8dp"
+                    android:paddingVertical="2dp"
+                    android:layout_marginTop="4dp"
+                    android:drawableStart="@drawable/ic_star_small"
+                    android:drawablePadding="2dp"
+                    tools:text="4.5" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Address -->
+        <TextView
+            android:id="@+id/tvGymAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="123 Rue de la République, Centre-ville"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="8dp"
+            android:drawableStart="@drawable/ic_location_small"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            tools:text="123 Rue de la République, Centre-ville" />
+
+        <!-- Price -->
+        <TextView
+            android:id="@+id/tvGymPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="45€/mois"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/wellness_accent"
+            android:layout_marginBottom="8dp"
+            android:drawableStart="@drawable/ic_euro"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            tools:text="45€/mois" />
+
+        <!-- Amenities -->
+        <TextView
+            android:id="@+id/tvGymAmenities"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cardio, Musculation, Piscine"
+            android:textSize="12sp"
+            android:textColor="@color/text_secondary"
+            android:layout_marginBottom="12dp"
+            android:drawableStart="@drawable/ic_fitness"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            tools:text="Cardio, Musculation, Piscine" />
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Directions Button -->
+            <LinearLayout
+                android:id="@+id/btnDirections"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/button_rounded_blue"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_directions"
+                    app:tint="@android:color/white"
+                    android:layout_marginEnd="6dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Itinéraire"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <!-- Call Button -->
+            <LinearLayout
+                android:id="@+id/btnCall"
+                android:layout_width="0dp"
+                android:layout_height="36dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/button_rounded_wellness"
+                android:layout_marginStart="8dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:src="@drawable/ic_phone"
+                    app:tint="@android:color/white"
+                    android:layout_marginEnd="6dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Appeler"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/white"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

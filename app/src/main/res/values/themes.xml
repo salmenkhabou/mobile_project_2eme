@@ -1,55 +1,132 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme with health & wellness colors -->
+    <!-- Modern Professional Health & Wellness Theme -->
     <style name="Base.Theme.Projet_android" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Primary colors -->
-        <item name="colorPrimary">@color/primary_green</item>
-        <item name="colorPrimaryVariant">@color/primary_green_dark</item>
-        <item name="colorOnPrimary">@color/text_on_primary</item>
+        <!-- Modern Primary colors -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@color/on_primary</item>
+        <item name="colorPrimaryContainer">@color/primary_surface</item>
+        <item name="colorOnPrimaryContainer">@color/primary_dark</item>
         
-        <!-- Secondary colors -->
-        <item name="colorSecondary">@color/secondary_blue</item>
-        <item name="colorSecondaryVariant">@color/secondary_blue_dark</item>
-        <item name="colorOnSecondary">@color/text_on_primary</item>
+        <!-- Modern Secondary colors -->
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondary_dark</item>
+        <item name="colorOnSecondary">@color/on_secondary</item>
+        <item name="colorSecondaryContainer">@color/secondary_surface</item>
+        <item name="colorOnSecondaryContainer">@color/secondary_dark</item>
         
-        <!-- Background colors -->
-        <item name="android:colorBackground">@color/background_light</item>
-        <item name="colorSurface">@color/background_card</item>
-        <item name="colorOnSurface">@color/text_primary</item>
-        <item name="colorOnBackground">@color/text_primary</item>
+        <!-- Modern Background & Surface colors -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorSurfaceVariant">@color/surface_variant</item>
+        <item name="colorOnSurface">@color/on_surface</item>
+        <item name="colorOnSurfaceVariant">@color/on_surface_variant</item>
+        <item name="colorOnBackground">@color/on_background</item>
         
-        <!-- Accent color -->
-        <item name="colorAccent">@color/accent_orange</item>
+        <!-- Modern Accent & Error colors -->
+        <item name="colorAccent">@color/accent</item>
+        <item name="colorTertiary">@color/accent</item>
+        <item name="colorOnTertiary">@color/on_accent</item>
+        <item name="colorTertiaryContainer">@color/accent_surface</item>
+        <item name="colorOnTertiaryContainer">@color/accent_dark</item>
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/white</item>
         
-        <!-- Status bar -->
-        <item name="android:statusBarColor">@color/primary_green_dark</item>
+        <!-- Modern Outline & Border colors -->
+        <item name="colorOutline">@color/outline</item>
+        <item name="colorOutlineVariant">@color/outline_variant</item>
+        
+        <!-- Status & Navigation bar styling -->
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">@color/surface</item>
         <item name="android:windowLightStatusBar">false</item>
+        <!-- android:windowLightNavigationBar moved to values-v27 for API 27+ support -->
+        
+        <!-- Window & Activity styling -->
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
     </style>
 
     <style name="Theme.Projet_android" parent="Base.Theme.Projet_android" />
     
-    <!-- Custom button styles for health metrics - Responsive -->
-    <style name="HealthMetricButton" parent="Widget.Material3.Button.TextButton">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textSize">@dimen/button_text_size</item>
-        <item name="android:paddingHorizontal">@dimen/button_padding_horizontal</item>
-        <item name="android:paddingVertical">@dimen/button_padding_vertical</item>
-        <item name="backgroundTint">@color/primary_green_lightest</item>
-        <item name="android:textColor">@color/primary_green_dark</item>
-        <item name="cornerRadius">16dp</item>
-        <item name="android:minWidth">0dp</item>
-        <item name="android:minHeight">0dp</item>
+    <!-- Window Animation Style -->
+    <style name="WindowAnimationTransition" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:activityOpenExitAnimation">@android:anim/fade_out</item>
+        <item name="android:activityCloseEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:activityCloseExitAnimation">@android:anim/fade_out</item>
     </style>
     
-    <!-- Card style for health metrics - Responsive -->
-    <style name="HealthMetricCard">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">@dimen/metric_card_height</item>
+    <!-- ============ MODERN BUTTON STYLES ============ -->
+    
+    <!-- Primary Button Style -->
+    <style name="Button.Primary" parent="Widget.Material3.Button">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:letterSpacing">0.02</item>
+        <item name="android:paddingHorizontal">24dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="backgroundTint">@color/primary</item>
+        <item name="android:textColor">@color/on_primary</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:minHeight">48dp</item>
+        <item name="android:elevation">2dp</item>
+    </style>
+    
+    <!-- Secondary Button Style -->
+    <style name="Button.Secondary" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:paddingHorizontal">24dp</item>
+        <item name="android:paddingVertical">12dp</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="strokeColor">@color/primary</item>
+        <item name="strokeWidth">2dp</item>
+        <item name="cornerRadius">12dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+    
+    <!-- Metric Button Style -->
+    <style name="Button.Metric" parent="Widget.Material3.Button.TextButton">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:paddingVertical">8dp</item>
+        <item name="cornerRadius">8dp</item>
+        <item name="android:minHeight">36dp</item>
+        <item name="android:minWidth">0dp</item>
+    </style>
+    
+    <!-- ============ MODERN CARD STYLES ============ -->
+    
+    <!-- Primary Card Style -->
+    <style name="Card.Primary" parent="Widget.Material3.CardView.Elevated">
         <item name="cardCornerRadius">16dp</item>
         <item name="cardElevation">4dp</item>
-        <item name="android:layout_margin">@dimen/card_margin</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="cardBackgroundColor">@color/surface</item>
+        <item name="contentPadding">16dp</item>
+    </style>
+    
+    <!-- Health Metric Card Style -->
+    <style name="Card.HealthMetric" parent="Card.Primary">
+        <item name="android:layout_height">120dp</item>
+        <item name="cardCornerRadius">20dp</item>
+        <item name="cardElevation">6dp</item>
+        <item name="contentPadding">20dp</item>
         <item name="cardBackgroundColor">@color/background_card</item>
+    </style>
+    
+    <!-- Header Card Style -->
+    <style name="Card.Header" parent="Card.Primary">
+        <item name="cardCornerRadius">24dp</item>
+        <item name="cardElevation">8dp</item>
+        <item name="android:layout_margin">16dp</item>
+        <item name="cardBackgroundColor">@color/primary</item>
+        <item name="contentPadding">24dp</item>
     </style>
     
     <!-- Compact card style for smaller elements - Responsive -->
@@ -82,4 +159,200 @@
         <item name="android:layout_margin">@dimen/card_margin</item>
         <item name="cardBackgroundColor">@color/surface_light</item>
     </style>
+    
+    <!-- ============ MODERN TEXT STYLES ============ -->
+    
+    <!-- Base Text Style -->
+    <style name="Text">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/on_surface</item>
+    </style>
+    
+    <!-- Base Text Styles -->
+    <style name="Text.Display">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/on_surface</item>
+    </style>
+    
+    <style name="Text.Headline">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/on_surface</item>
+    </style>
+    
+    <style name="Text.Title">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/on_surface</item>
+    </style>
+    
+    <style name="Text.Body">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/on_surface</item>
+    </style>
+    
+    <style name="Text.Label">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/on_surface_variant</item>
+    </style>
+    
+    <!-- Display Text Styles -->
+    <style name="Text.Display.Large">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">-0.01</item>
+
+    </style>
+    
+    <style name="Text.Display.Medium">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">0</item>
+
+    </style>
+    
+    <style name="Text.Display.Small">
+        <item name="android:textSize">22sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">0</item>
+
+    </style>
+    
+    <!-- Headline Text Styles -->
+    <style name="Text.Headline.Large">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">0</item>
+
+    </style>
+
+    <style name="Text.Headline.Medium">
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">0</item>
+
+    </style>
+
+    <style name="Text.Headline.Small">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">0</item>
+
+    </style>
+
+    <!-- Title Text Styles -->
+    <style name="Text.Title.Large">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">0.02</item>
+
+    </style>
+
+    <style name="Text.Title.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">0.02</item>
+
+    </style>
+
+    <style name="Text.Title.Small">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">0.03</item>
+
+    </style>
+
+    <!-- Body Text Styles -->
+    <style name="Text.Body.Large">
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">0.01</item>
+
+    </style>
+    
+    <style name="Text.Body.Medium">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">0.01</item>
+
+    </style>
+    
+    <style name="Text.Body.Small">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textColor">@color/on_surface_variant</item>
+        <item name="android:letterSpacing">0.02</item>
+
+    </style>
+    
+    <!-- Label Text Styles -->
+    <style name="Text.Label.Large">
+        <item name="android:textSize">14sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/on_surface</item>
+        <item name="android:letterSpacing">0.02</item>
+
+    </style>
+
+    <style name="Text.Label.Medium">
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/on_surface_variant</item>
+        <item name="android:letterSpacing">0.05</item>
+
+    </style>
+
+    <style name="Text.Label.Small">
+        <item name="android:textSize">11sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">@color/on_surface_variant</item>
+        <item name="android:letterSpacing">0.05</item>
+
+    </style>
+
+    <!-- ============ LEGACY STYLES FOR BACKWARD COMPATIBILITY ============ -->
+    
+    <!-- Health Metric Button (Legacy) -->
+    <style name="HealthMetricButton" parent="Button.Metric">
+        <item name="backgroundTint">@color/primary_surface</item>
+        <item name="android:textColor">@color/primary_dark</item>
+    </style>
+    
+    <!-- Health Metric Card (Legacy) -->
+    <style name="HealthMetricCard" parent="Card.HealthMetric">
+        <item name="android:layout_width">0dp</item>
+    </style>
+
+    <!-- Base Card Style -->
+    <style name="Card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="cardCornerRadius">12dp</item>
+        <item name="cardElevation">2dp</item>
+    </style>
+
+    <!-- Action Card Style -->
+    <style name="Card.Action">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="cardElevation">4dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+    </style>
+
+
 </resources>

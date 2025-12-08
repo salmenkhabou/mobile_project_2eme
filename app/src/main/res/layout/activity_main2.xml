@@ -1,393 +1,820 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_light"
-    android:fillViewport="true"
+    android:background="@color/background"
     tools:context=".MainActivity2">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:padding="@dimen/layout_padding">
+    <!-- Modern App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        app:elevation="0dp"
+        app:liftOnScroll="true">
 
-    <!-- Header Section -->    <!-- Header Section - Full Width Responsive -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_header"
-        style="@style/HealthHeaderCard"
-        android:layout_marginBottom="@dimen/section_margin_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">        <LinearLayout
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/surface"
+            app:title="WellnessHub"
+            app:titleTextColor="@color/on_surface"
+            app:titleTextAppearance="@style/Text.Headline.Medium"
+            app:layout_scrollFlags="scroll|enterAlways|snap" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content with NestedScrollView -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="@dimen/header_card_padding">
-
-            <TextView
-                android:id="@+id/tv_welcome"
+            android:padding="@dimen/layout_padding">            <!-- Modern Welcome Header Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="🌟 Bonjour ! Voici votre résumé du jour"
-                android:textSize="@dimen/header_text_size"
-                android:textStyle="bold"
-                android:textColor="@color/text_on_primary"
-                android:textAlignment="center"
-                android:layout_marginBottom="8dp" /><!-- Status de l'authentification Google Fit -->
+                android:layout_marginBottom="@dimen/section_spacing"
+                android:background="@drawable/header_gradient"
+                app:cardCornerRadius="24dp"
+                app:cardElevation="8dp"
+                app:strokeWidth="0dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/content_padding"
+                    android:background="@drawable/header_gradient">
+
+                    <!-- Welcome Message -->
+                    <TextView
+                        android:id="@+id/tv_welcome"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="✨ Welcome to Your Wellness Journey"
+                        android:textAppearance="@style/Text.Headline.Medium"
+                        android:textColor="@color/on_primary"
+                        android:textAlignment="center"
+                        android:layout_marginBottom="@dimen/space_md" />
+
+                    <!-- Connection Status -->
+                    <LinearLayout
+                        android:id="@+id/layout_auth_status"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/card_background"
+                        android:padding="@dimen/card_padding"
+                        android:layout_marginTop="@dimen/space_sm">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_medium"
+                            android:layout_height="@dimen/icon_size_medium"
+                            android:src="@drawable/ic_fitness"
+                            app:tint="@color/warning"
+                            android:layout_marginEnd="@dimen/space_sm" />
+
+                        <TextView
+                            android:id="@+id/tv_auth_status"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Demo Mode Active"
+                            android:textAppearance="@style/Text.Body.Medium"
+                            android:textColor="@color/on_surface_variant" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_connect_google_fit"
+                            style="@style/Button.Metric"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Connect"
+                            android:backgroundTint="@color/secondary"
+                            android:textColor="@color/on_secondary" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>            <!-- Health Metrics Section Title -->
             <LinearLayout
-                android:id="@+id/layout_auth_status"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center"
-                android:background="@drawable/rounded_background_white"                android:padding="@dimen/card_padding">
+                android:gravity="center_vertical"
+                android:layout_marginBottom="@dimen/space_md">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_large"
+                    android:layout_height="@dimen/icon_size_large"
+                    android:src="@drawable/ic_fitness"
+                    app:tint="@color/primary"
+                    android:layout_marginEnd="@dimen/space_sm" />
 
                 <TextView
-                    android:id="@+id/tv_auth_status"
+                    android:id="@+id/tv_metrics_title"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="🟡 Mode démo activé"
-                    android:textSize="@dimen/metric_title_text_size"
-                    android:textColor="@color/text_secondary"
-                    android:textAlignment="center" />
+                    android:text="Health Metrics"
+                    android:textAppearance="@style/Text.Headline.Small"
+                    android:textColor="@color/on_surface" />
 
-                <Button
-                    android:id="@+id/btn_connect_google_fit"
-                    style="@style/HealthMetricButton"
-                    android:text="Se connecter"
-                    android:backgroundTint="@color/secondary_blue"
-                    android:textColor="@color/text_on_primary"
-                    android:layout_marginStart="8dp" />
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_view_all_metrics"
+                    style="@style/Button.Metric"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View All"
+                    android:backgroundTint="@color/surface_variant"
+                    android:textColor="@color/primary" />
+
+            </LinearLayout>            <!-- Modern Health Metrics Grid -->
+            <LinearLayout
+                android:id="@+id/layout_metrics_grid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- First Row: Steps & Calories -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/space_sm"
+                    android:baselineAligned="false">                    <!-- Modern Steps Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_steps"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/metric_card_height"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/card_margin_small"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="6dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:padding="@dimen/card_padding"
+                            android:background="@color/steps_surface">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_xlarge"
+                                android:layout_height="@dimen/icon_size_xlarge"
+                                android:src="@drawable/ic_steps"
+                                app:tint="@color/steps_primary"
+                                android:layout_marginBottom="@dimen/space_sm" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Steps"
+                                android:textAppearance="@style/Text.Label.Medium"
+                                android:textColor="@color/on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tv_steps_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="8,547"
+                                android:textAppearance="@style/Text.Headline.Medium"
+                                android:textColor="@color/steps_primary"
+                                android:textStyle="bold"
+                                android:layout_marginTop="@dimen/space_xs" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_view_steps"
+                                style="@style/Button.Metric"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="View"
+                                android:layout_marginTop="@dimen/space_sm"
+                                android:backgroundTint="@color/steps_primary"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Modern Calories Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_calories"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/metric_card_height"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/card_margin_small"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="6dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:padding="@dimen/card_padding"
+                            android:background="@color/calories_surface">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_xlarge"
+                                android:layout_height="@dimen/icon_size_xlarge"
+                                android:src="@drawable/ic_calories"
+                                app:tint="@color/calories_primary"
+                                android:layout_marginBottom="@dimen/space_sm" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Calories"
+                                android:textAppearance="@style/Text.Label.Medium"
+                                android:textColor="@color/on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tv_calories_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1,847"
+                                android:textAppearance="@style/Text.Headline.Medium"
+                                android:textColor="@color/calories_primary"
+                                android:textStyle="bold"
+                                android:layout_marginTop="@dimen/space_xs" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_view_calories"
+                                style="@style/Button.Metric"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="View"
+                                android:layout_marginTop="@dimen/space_sm"
+                                android:backgroundTint="@color/calories_primary"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>                </LinearLayout>
+
+                <!-- Second Row: Sleep & Heart Rate -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/space_sm"
+                    android:baselineAligned="false">
+
+                    <!-- Modern Sleep Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_sleep"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/metric_card_height"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/card_margin_small"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="6dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:padding="@dimen/card_padding"
+                            android:background="@color/sleep_surface">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_xlarge"
+                                android:layout_height="@dimen/icon_size_xlarge"
+                                android:src="@drawable/ic_sleep"
+                                app:tint="@color/sleep_primary"
+                                android:layout_marginBottom="@dimen/space_sm" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Sleep"
+                                android:textAppearance="@style/Text.Label.Medium"
+                                android:textColor="@color/on_surface_variant" />                            <TextView
+                                android:id="@+id/tv_sleep_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="7h 42m"
+                                android:textAppearance="@style/Text.Headline.Medium"
+                                android:textColor="@color/sleep_primary"
+                                android:textStyle="bold"
+                                android:layout_marginTop="@dimen/space_xs" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_view_sleep"
+                                style="@style/Button.Metric"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="View"
+                                android:layout_marginTop="@dimen/space_sm"
+                                android:backgroundTint="@color/sleep_primary"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Modern Heart Rate Card -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_heart"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/metric_card_height"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/card_margin_small"
+                        app:cardCornerRadius="20dp"
+                        app:cardElevation="6dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:padding="@dimen/card_padding"
+                            android:background="@color/heart_surface">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_xlarge"
+                                android:layout_height="@dimen/icon_size_xlarge"
+                                android:src="@drawable/ic_heart"
+                                app:tint="@color/heart_primary"
+                                android:layout_marginBottom="@dimen/space_sm" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Heart Rate"
+                                android:textAppearance="@style/Text.Label.Medium"
+                                android:textColor="@color/on_surface_variant" />
+
+                            <TextView
+                                android:id="@+id/tv_heart_rate"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="72 bpm"
+                                android:textAppearance="@style/Text.Headline.Medium"
+                                android:textColor="@color/heart_primary"
+                                android:textStyle="bold"
+                                android:layout_marginTop="@dimen/space_xs" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btn_view_heart"
+                                style="@style/Button.Metric"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="View"
+                                android:layout_marginTop="@dimen/space_sm"
+                                android:backgroundTint="@color/heart_primary"
+                                android:textColor="@color/white" />
+
+                        </LinearLayout>                </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
 
             </LinearLayout>
+
+            <!-- Quick Actions Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/section_spacing"
+                android:layout_marginBottom="@dimen/space_md">
+
+                <ImageView
+                    android:layout_width="@dimen/icon_size_large"
+                    android:layout_height="@dimen/icon_size_large"
+                    android:src="@drawable/ic_rocket"
+                    app:tint="@color/accent"
+                    android:layout_marginEnd="@dimen/space_sm" />
+
+                <TextView
+                    android:id="@+id/tv_actions_title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Quick Actions"
+                    android:textAppearance="@style/Text.Headline.Small"                    android:textColor="@color/on_surface" />
+
+            </LinearLayout>
+
+            <!-- Modern Action Cards Grid -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_quick_actions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:layout_marginBottom="@dimen/section_spacing" />
+
+            <!-- Or if RecyclerView is complex, use a grid layout: -->
+            <LinearLayout
+                android:id="@+id/layout_action_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- First Row: Core Health Actions -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/space_sm"
+                    android:baselineAligned="false">
+
+                    <!-- Body Analysis Action -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_body_analysis"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/card_height_small"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/card_margin_small"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/card_padding"
+                            android:background="@color/fitness_surface">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_large"
+                                android:layout_height="@dimen/icon_size_large"
+                                android:src="@drawable/ic_body_analysis"
+                                app:tint="@color/fitness_primary"
+                                android:layout_marginEnd="@dimen/space_sm" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Body Analysis"
+                                android:textAppearance="@style/Text.Title.Medium"
+                                android:textColor="@color/on_surface" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Nutrition Tracker Action -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_nutrition"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/card_height_small"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/card_margin_small"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/card_padding"
+                            android:background="@color/nutrition_surface">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_large"
+                                android:layout_height="@dimen/icon_size_large"
+                                android:src="@drawable/ic_nutrition"
+                                app:tint="@color/nutrition_primary"
+                                android:layout_marginEnd="@dimen/space_sm" />
+
+                            <TextView
+                                android:id="@+id/btn_nutrition"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Nutrition"
+                                android:textAppearance="@style/Text.Title.Medium"
+                                android:textColor="@color/on_surface" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>                <!-- Second Row: Wellness & Mental Health -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/space_sm"
+                    android:baselineAligned="false">
+
+                    <!-- Mood Tracker Action -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_mood_tracker"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/card_height_small"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/card_margin_small"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/card_padding"
+                            android:background="@color/mental_surface">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_large"
+                                android:layout_height="@dimen/icon_size_large"
+                                android:src="@drawable/ic_mood"
+                                app:tint="@color/mental_primary"
+                                android:layout_marginEnd="@dimen/space_sm" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Mood Tracker"
+                                android:textAppearance="@style/Text.Title.Medium"
+                                android:textColor="@color/on_surface" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Meditation Action -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_meditation"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/card_height_small"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/card_margin_small"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/card_padding"
+                            android:background="@color/meditation_surface">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_large"
+                                android:layout_height="@dimen/icon_size_large"
+                                android:src="@drawable/ic_meditation"
+                                app:tint="@color/meditation_primary"
+                                android:layout_marginEnd="@dimen/space_sm" />
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Meditation"
+                                android:textAppearance="@style/Text.Title.Medium"
+                                android:textColor="@color/on_surface" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>                <!-- Third Row: Wellness Hub & Weather -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="@dimen/space_sm"
+                    android:baselineAligned="false">
+
+                    <!-- Wellness Hub Action -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_wellness_hub"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/card_height_small"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="@dimen/card_margin_small"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/card_padding"
+                            android:background="@color/wellness_surface">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_large"
+                                android:layout_height="@dimen/icon_size_large"
+                                android:src="@drawable/ic_wellness"
+                                app:tint="@color/wellness_primary"
+                                android:layout_marginEnd="@dimen/space_sm" />
+
+                            <TextView
+                                android:id="@+id/btn_wellness_hub"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="Wellness Hub"
+                                android:textAppearance="@style/Text.Title.Medium"
+                                android:textColor="@color/on_surface" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <!-- Weather Action -->
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_weather"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/card_height_small"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/card_margin_small"
+                        android:clickable="true"
+                        android:foreground="?attr/selectableItemBackground"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="4dp"
+                        app:strokeWidth="0dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            android:gravity="center_vertical"
+                            android:padding="@dimen/card_padding"
+                            android:background="@color/accent_surface">
+
+                            <ImageView
+                                android:layout_width="@dimen/icon_size_large"
+                                android:layout_height="@dimen/icon_size_large"
+                                android:src="@drawable/ic_weather"
+                                app:tint="@color/accent"
+                                android:layout_marginEnd="@dimen/space_sm" />
+
+                            <TextView
+                                android:id="@+id/btn_weather"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"                                android:layout_weight="1"
+                                android:text="Weather &amp; Sun"
+                                android:textAppearance="@style/Text.Title.Medium"
+                                android:textColor="@color/on_surface" />
+
+                        </LinearLayout>
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                </LinearLayout>
+
+                <!-- Featured Action: Gym Finder -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_gym_finder"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/card_height_medium"
+                    android:layout_marginBottom="@dimen/space_sm"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="8dp"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/content_padding"
+                        android:background="@color/primary_surface">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_xlarge"
+                            android:layout_height="@dimen/icon_size_xlarge"
+                            android:src="@drawable/ic_gym"
+                            app:tint="@color/primary"
+                            android:layout_marginEnd="@dimen/space_lg" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/btn_gym_finder"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Find Gyms Nearby"
+                                android:textAppearance="@style/Text.Title.Large"
+                                android:textColor="@color/on_surface"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Discover fitness centers in your area"
+                                android:textAppearance="@style/Text.Body.Small"
+                                android:textColor="@color/on_surface_variant"
+                                android:layout_marginTop="@dimen/space_xs" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_medium"
+                            android:layout_height="@dimen/icon_size_medium"
+                            android:src="@drawable/ic_arrow_forward"
+                            app:tint="@color/primary" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Settings & Profile -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_settings"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/card_height_small"
+                    android:clickable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="4dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/outline_variant">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/card_padding"
+                        android:background="@color/surface">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_large"
+                            android:layout_height="@dimen/icon_size_large"
+                            android:src="@drawable/ic_settings"
+                            app:tint="@color/on_surface_variant"
+                            android:layout_marginEnd="@dimen/space_sm" />
+
+                        <TextView
+                            android:id="@+id/btn_settings"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"                            android:layout_weight="1"
+                            android:text="Settings &amp; Profile"
+                            android:textAppearance="@style/Text.Title.Medium"
+                            android:textColor="@color/on_surface" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_small"
+                            android:layout_height="@dimen/icon_size_small"
+                            android:src="@drawable/ic_arrow_forward"
+                            app:tint="@color/on_surface_variant" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+
+            <!-- Bottom Spacer for proper scrolling -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_3xl" />
 
         </LinearLayout>
 
-    </androidx.cardview.widget.CardView>    <!-- Metrics Title -->
-    <TextView
-        android:id="@+id/tv_metrics_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="📊 Vos Métriques Santé"
-        android:textSize="@dimen/section_title_text_size"
-        android:textStyle="bold"
-        android:textColor="@color/text_primary"
-        android:layout_marginTop="@dimen/section_margin_top"
-        android:layout_marginBottom="@dimen/section_margin_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_header" />    <!-- Responsive Metrics Grid (LinearLayout for better space utilization) -->
-    <LinearLayout
-        android:id="@+id/layout_metrics_grid"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_metrics_title">
+    </androidx.core.widget.NestedScrollView>
 
-        <!-- First Row: Steps & Calories -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/card_margin_bottom">
-
-            <!-- Steps Card -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_steps"
-                style="@style/HealthMetricCard"
-                android:layout_weight="1"
-                android:layout_marginEnd="@dimen/card_margin">                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="@dimen/card_padding"
-                    android:background="@drawable/gradient_steps_background">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🚶‍♀️"
-                        android:textSize="@dimen/emoji_icon_size"
-                        android:layout_marginBottom="4dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Pas"
-                        android:textSize="@dimen/metric_title_text_size"
-                        android:textColor="@color/text_secondary"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_steps_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="8,547"
-                        android:textSize="@dimen/metric_value_text_size"
-                        android:textStyle="bold"
-                        android:textColor="@color/steps_color"
-                        android:layout_marginTop="2dp" />
-
-                    <Button
-                        android:id="@+id/btn_view_steps"
-                        style="@style/HealthMetricButton"
-                        android:text="Détails"
-                        android:layout_marginTop="6dp"
-                        android:backgroundTint="@color/steps_color" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <!-- Calories Card -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/card_calories"
-                style="@style/HealthMetricCard"
-                android:layout_weight="1"
-                android:layout_marginStart="@dimen/card_margin">                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:padding="@dimen/card_padding"
-                    android:background="@drawable/gradient_calories_background">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🔥"
-                        android:textSize="@dimen/emoji_icon_large_size"
-                        android:layout_marginBottom="4dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Calories"
-                        android:textSize="@dimen/metric_title_text_size"
-                        android:textColor="@color/text_secondary"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/tv_calories_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1,847"
-                        android:textSize="@dimen/metric_value_text_size"
-                        android:textStyle="bold"
-                        android:textColor="@color/calories_color"
-                        android:layout_marginTop="2dp" />
-
-                    <Button
-                        android:id="@+id/btn_view_calories"
-                        style="@style/HealthMetricButton"
-                        android:text="Détails"
-                        android:layout_marginTop="6dp"
-                        android:backgroundTint="@color/calories_color" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>        <!-- Sleep Card (Full Width) -->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_sleep"
-            style="@style/HealthMetricCard"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/sleep_card_height"
-            android:layout_marginBottom="@dimen/card_margin_bottom">            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:padding="@dimen/card_padding"
-                android:background="@drawable/gradient_sleep_background">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🌙"
-                        android:textSize="@dimen/emoji_icon_size"
-                        android:layout_marginBottom="4dp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Sommeil"
-                        android:textSize="@dimen/metric_title_text_size"
-                        android:textColor="@color/text_secondary"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <TextView
-                        android:id="@+id/tv_sleep_count"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="7h 42m"
-                        android:textSize="@dimen/metric_value_text_size"
-                        android:textStyle="bold"
-                        android:textColor="@color/sleep_color" />
-
-                    <Button
-                        android:id="@+id/btn_view_sleep"
-                        style="@style/HealthMetricButton"
-                        android:text="Détails"
-                        android:layout_marginTop="6dp"
-                        android:backgroundTint="@color/sleep_color" />
-
-                </LinearLayout>
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-    </LinearLayout>    <!-- Actions Section Title -->
-    <TextView
-        android:id="@+id/tv_actions_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="🚀 Actions Rapides"
-        android:textSize="@dimen/section_title_text_size"
-        android:textStyle="bold"
-        android:textColor="@color/text_primary"
-        android:layout_marginTop="@dimen/section_margin_top"
-        android:layout_marginBottom="@dimen/section_margin_bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/layout_metrics_grid" />    <!-- Action Buttons - Full Width Responsive -->
-    <LinearLayout
-        android:id="@+id/layout_action_buttons"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_actions_title">
-
-        <!-- Action Buttons Row -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/card_margin_bottom">            <!-- Nutrition Scanner -->
-            <androidx.cardview.widget.CardView
-                style="@style/HealthMetricCardCompact"
-                android:layout_weight="1"
-                android:layout_marginEnd="@dimen/card_margin"
-                app:cardBackgroundColor="@color/nutrition_color">                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:padding="@dimen/card_padding">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="🍎"
-                        android:textSize="@dimen/emoji_icon_size"
-                        android:layout_marginEnd="8dp" />
-
-                    <Button
-                        android:id="@+id/btn_nutrition"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Scanner"
-                        android:textSize="@dimen/button_text_size"
-                        android:textColor="@color/text_on_primary"
-                        android:backgroundTint="@color/nutrition_color"
-                        android:minHeight="0dp"
-                        style="@style/Widget.Material3.Button" />
-
-                </LinearLayout>            </androidx.cardview.widget.CardView>
-
-            <!-- Calendar/History -->
-            <androidx.cardview.widget.CardView
-                style="@style/HealthMetricCardCompact"
-                android:layout_weight="1"
-                android:layout_marginStart="@dimen/card_margin"
-                app:cardBackgroundColor="@color/secondary_blue_light">                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:gravity="center"
-                    android:padding="@dimen/card_padding">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="📊"
-                        android:textSize="@dimen/emoji_icon_size"
-                        android:layout_marginEnd="8dp" />
-
-                    <Button
-                        android:id="@+id/btn_calendar"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="Historique"
-                        android:textSize="@dimen/button_text_size"
-                        android:textColor="@color/text_on_primary"
-                        android:backgroundTint="@color/secondary_blue"
-                        android:minHeight="0dp"
-                        style="@style/Widget.Material3.Button" />
-
-                </LinearLayout>
-
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>        <!-- Settings Button (Full Width) -->
-        <androidx.cardview.widget.CardView
-            style="@style/HealthActionCard">            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:gravity="center"
-                android:padding="@dimen/card_padding">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="⚙️"
-                    android:textSize="@dimen/emoji_icon_size"
-                    android:layout_marginEnd="12dp" />
-
-                <Button
-                    android:id="@+id/btn_settings"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Paramètres et Profil"
-                    android:textSize="@dimen/metric_title_text_size"
-                    android:textColor="@color/text_primary"
-                    android:backgroundTint="@color/surface_light"
-                    android:minHeight="0dp"
-                    style="@style/Widget.Material3.Button.TextButton" />
-
-            </LinearLayout>        </androidx.cardview.widget.CardView>
-    </LinearLayout>
-
-    <!-- Bottom Spacer for proper scrolling -->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/section_margin_top"
-        app:layout_constraintTop_toBottomOf="@id/layout_action_buttons" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

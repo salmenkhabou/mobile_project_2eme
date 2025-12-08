@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.button.MaterialButton;
+
 import com.example.projet_android.services.GoogleFitManager;
 import com.example.projet_android.services.NotificationHelper;
 import com.example.projet_android.services.AuthManager;
@@ -26,14 +28,17 @@ public class MainActivity2 extends AppCompatActivity implements GoogleFitManager
     
     private TextView welcomeTextView;
     private TextView stepsTextView;
-    private TextView caloriesTextView;
-    private TextView sleepTextView;    
-    private Button viewStepsButton;
-    private Button viewCaloriesButton;    
-    private Button viewSleepButton;    
-    private Button calendarButton;    private Button nutritionButton;
-    private Button settingsButton;
-    private Button connectGoogleFitButton;
+    private TextView caloriesTextView;    private TextView sleepTextView;
+    private MaterialButton viewStepsButton;
+    private MaterialButton viewCaloriesButton;    
+    private MaterialButton viewSleepButton;
+    private MaterialButton calendarButton;
+    private TextView nutritionButton;
+    private TextView settingsButton;
+    private TextView wellnessHubButton;
+    private TextView weatherButton;
+    private TextView gymFinderButton;
+    private MaterialButton connectGoogleFitButton;
     private TextView authStatusTextView;
     private GoogleFitManager googleFitManager;
     private PreferencesManager preferencesManager;
@@ -69,71 +74,114 @@ public class MainActivity2 extends AppCompatActivity implements GoogleFitManager
         stepsTextView = findViewById(R.id.tv_steps_count);
         caloriesTextView = findViewById(R.id.tv_calories_count);
         sleepTextView = findViewById(R.id.tv_sleep_count);
-        viewStepsButton = findViewById(R.id.btn_view_steps);
-        viewCaloriesButton = findViewById(R.id.btn_view_calories);        
+        viewStepsButton = findViewById(R.id.btn_view_steps);        viewCaloriesButton = findViewById(R.id.btn_view_calories);        
         viewSleepButton = findViewById(R.id.btn_view_sleep);        
-        calendarButton = findViewById(R.id.btn_calendar);
+        // calendarButton = findViewById(R.id.btn_calendar); // TODO: Add calendar button to layout
         nutritionButton = findViewById(R.id.btn_nutrition);
         settingsButton = findViewById(R.id.btn_settings);
+        wellnessHubButton = findViewById(R.id.btn_wellness_hub);
+        weatherButton = findViewById(R.id.btn_weather);
+        gymFinderButton = findViewById(R.id.btn_gym_finder);
         
         // Try to find the optional Google Fit connection elements
         connectGoogleFitButton = findViewById(R.id.btn_connect_google_fit);
         authStatusTextView = findViewById(R.id.tv_auth_status);
     }
-    
-    private void setupClickListeners() {
-        viewStepsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDetailActivity("Pas");
-            }
-        });
+      private void setupClickListeners() {
+        if (viewStepsButton != null) {
+            viewStepsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openDetailActivity("Pas");
+                }
+            });        }
         
-        viewCaloriesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDetailActivity("Calories");
-            }
-        });
+        if (viewCaloriesButton != null) {
+            viewCaloriesButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openDetailActivity("Calories");
+                }
+            });        }
         
-        viewSleepButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDetailActivity("Sommeil");
-            }
-        });
+        if (viewSleepButton != null) {
+            viewSleepButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    openDetailActivity("Sommeil");
+                }
+            });
+        }
         
-        calendarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity2.this, CalendarActivity.class);
-                startActivity(intent);
-            }
-        });
+        // Only set calendar button listener if button exists
+        if (calendarButton != null) {
+            calendarButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity2.this, CalendarActivity.class);
+                    startActivity(intent);
+                }
+            });        }
         
-        nutritionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity2.this, NutritionActivity.class);
-                startActivity(intent);
-            }
-        });
+        if (nutritionButton != null) {
+            nutritionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity2.this, NutritionActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
         
-        settingsButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity2.this, SettingsActivity.class);
-                startActivity(intent);
-            }
-        });
-          // Ajouter un listener long click pour le logout sur le bouton settings
-        settingsButton.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                showLogoutDialog();
-                return true;
-            }
-        });
+        if (settingsButton != null) {
+            settingsButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity2.this, SettingsActivity.class);
+                    startActivity(intent);
+                }
+            });        }
+        
+        // Ajouter un listener long click pour le logout sur le bouton settings
+        if (settingsButton != null) {
+            settingsButton.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    showLogoutDialog();
+                    return true;
+                }
+            });
+        }
+        
+        // Nouveaux boutons wellness
+        if (wellnessHubButton != null) {
+            wellnessHubButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity2.this, WellnessHubActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+          if (weatherButton != null) {
+            weatherButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity2.this, WeatherActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+        
+        if (gymFinderButton != null) {
+            gymFinderButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity2.this, GymFinderActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
         
         // Configuration du bouton de connexion Google Fit (optionnel)
         if (connectGoogleFitButton != null) {

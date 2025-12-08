@@ -84,4 +84,34 @@ public class FoodItem {
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
+    
+    /**
+     * Calculate nutrition for a specific quantity
+     */
+    public NutritionInfo getNutritionForQuantity(float quantity) {
+        double factor = quantity / 100.0;
+        return new NutritionInfo(
+            (int) (calories * factor),
+            protein * factor,
+            carbs * factor,
+            fat * factor
+        );
+    }
+    
+    /**
+     * Inner class for nutrition information
+     */
+    public static class NutritionInfo {
+        public final int calories;
+        public final double protein;
+        public final double carbs;
+        public final double fat;
+
+        public NutritionInfo(int calories, double protein, double carbs, double fat) {
+            this.calories = calories;
+            this.protein = protein;
+            this.carbs = carbs;
+            this.fat = fat;
+        }
+    }
 }

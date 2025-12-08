@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".MoodTrackerActivity">
+
+    <!-- Modern App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/surface"
+            app:title="Mood Tracker"
+            app:titleTextColor="@color/on_surface"
+            app:titleTextAppearance="@style/Text.Headline.Medium"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationIconTint="@color/on_surface" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/layout_padding">            <!-- Modern Current Mood Header Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardCurrentMood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/section_spacing"
+                style="@style/Card.Primary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/content_padding_large"
+                    android:gravity="center"
+                    android:background="@drawable/header_gradient">
+
+                    <!-- Current Mood Icon -->
+                    <ImageView
+                        android:id="@+id/imgCurrentMood"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginBottom="@dimen/space_lg"
+                        android:src="@drawable/ic_mood_neutral"
+                        app:tint="@color/on_primary_container" />
+
+                    <!-- Current Mood Text -->
+                    <TextView
+                        android:id="@+id/tvCurrentMood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="How are you feeling?"
+                        android:textAppearance="@style/Text.Display.Small"
+                        android:textColor="@color/on_primary_container"
+                        android:textAlignment="center"
+                        android:layout_marginBottom="@dimen/space_sm" />
+
+                    <!-- Last Entry Info -->
+                    <TextView
+                        android:id="@+id/tvLastEntry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No entries yet"
+                        android:textAppearance="@style/Text.Body.Medium"
+                        android:textColor="@color/on_primary_container"
+                        android:drawableStart="@drawable/ic_schedule"
+                        android:drawableTint="@color/on_primary_container"
+                        android:drawablePadding="@dimen/space_xs"
+                        android:gravity="center_vertical" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>            <!-- Modern Mood Selection Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/section_spacing"
+                style="@style/Card.Primary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/content_padding">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/space_lg">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="How do you feel today?"
+                            android:textAppearance="@style/Text.Headline.Small"
+                            android:textColor="@color/on_surface" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_medium"
+                            android:layout_height="@dimen/icon_size_medium"
+                            android:src="@drawable/ic_mood_neutral"
+                            app:tint="@color/primary" />
+
+                    </LinearLayout>
+
+                    <!-- Mood Options Layout -->
+                    <LinearLayout
+                        android:id="@+id/layoutMoodOptions"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="5"
+                        android:background="@drawable/metric_background"
+                        android:padding="@dimen/space_md">
+                        
+                        <!-- Mood options will be added programmatically -->
+                        
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>            <!-- Modern Mood Tags Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMoodTags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/section_spacing"
+                style="@style/Card.Primary">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/content_padding">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="@dimen/space_sm">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="What's influencing your mood?"
+                            android:textAppearance="@style/Text.Title.Medium"
+                            android:textColor="@color/on_surface" />
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_medium"
+                            android:layout_height="@dimen/icon_size_medium"
+                            android:src="@drawable/ic_tag"
+                            app:tint="@color/primary" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Select up to 5 tags (optional)"
+                        android:textAppearance="@style/Text.Body.Small"
+                        android:textColor="@color/on_surface_variant"
+                        android:layout_marginBottom="@dimen/space_md" />
+
+                    <!-- Mood Tags Layout -->
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/layoutMoodTags"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:chipSpacing="@dimen/space_xs"
+                        app:lineSpacing="@dimen/space_xs"
+                        app:selectionRequired="false"
+                        app:singleSelection="false">
+                        
+                        <!-- Mood tags will be added programmatically -->
+                        
+                    </com.google.android.material.chip.ChipGroup>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>            <!-- Modern Statistics Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/section_spacing"
+                android:weightSum="2">
+
+                <!-- Mood Streak Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cardMoodStreak"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/space_sm"
+                    style="@style/Card.HealthMetric">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/content_padding"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_xlarge"
+                            android:layout_height="@dimen/icon_size_xlarge"
+                            android:src="@drawable/ic_streak"
+                            app:tint="@color/accent"
+                            android:layout_marginBottom="@dimen/space_md" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Streak"
+                            android:textAppearance="@style/Text.Label.Medium"
+                            android:textColor="@color/on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvMoodStreak"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0 days"
+                            android:textAppearance="@style/Text.Headline.Medium"
+                            android:textColor="@color/on_surface"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Weekly Summary Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/space_sm"
+                    style="@style/Card.HealthMetric">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="@dimen/content_padding"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size_xlarge"
+                            android:layout_height="@dimen/icon_size_xlarge"
+                            android:src="@drawable/ic_analytics"
+                            app:tint="@color/primary"
+                            android:layout_marginBottom="@dimen/space_md" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Weekly Avg"
+                            android:textAppearance="@style/Text.Label.Medium"
+                            android:textColor="@color/on_surface_variant" />
+
+                        <TextView
+                            android:id="@+id/tvWeeklyMoodSummary"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="😐"
+                            android:textAppearance="@style/Text.Headline.Medium"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>            <!-- Modern Log Mood Button -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnLogMood"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_md"
+                android:text="Log Current Mood"
+                android:textAppearance="@style/Text.Label.Large"
+                style="@style/Button.Primary"
+                app:icon="@drawable/ic_mood_neutral"
+                app:iconGravity="textStart" />
+
+            <!-- Action Buttons Row -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="@dimen/space_lg">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMoodHistory"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="@dimen/space_xs"
+                    android:text="History"
+                    android:textAppearance="@style/Text.Label.Medium"
+                    style="@style/Button.Secondary"
+                    app:icon="@drawable/ic_history"
+                    app:iconGravity="top" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnMoodInsights"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="@dimen/space_xs"
+                    android:text="Insights"
+                    android:textAppearance="@style/Text.Label.Medium"
+                    style="@style/Button.Secondary"
+                    app:icon="@drawable/ic_psychology"
+                    app:iconGravity="top" />
+
+            </LinearLayout>
+
+            <!-- Modern Mood Insights Action Card -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardMoodInsights"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_lg"
+                style="@style/Card.Action"
+                android:clickable="true"
+                android:focusable="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/content_padding"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/metric_background">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_size_xlarge"
+                        android:layout_height="@dimen/icon_size_xlarge"
+                        android:src="@drawable/ic_psychology"
+                        app:tint="@color/primary"
+                        android:layout_marginEnd="@dimen/space_lg" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mood Insights &amp; Patterns"
+                            android:textAppearance="@style/Text.Title.Medium"
+                            android:textColor="@color/on_surface" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Discover trends in your emotional wellbeing"
+                            android:textAppearance="@style/Text.Body.Small"
+                            android:textColor="@color/on_surface_variant"
+                            android:layout_marginTop="@dimen/space_xs" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_size_medium"
+                        android:layout_height="@dimen/icon_size_medium"
+                        android:src="@drawable/ic_arrow_forward"
+                        app:tint="@color/primary" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

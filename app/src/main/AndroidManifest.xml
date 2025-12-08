@@ -76,12 +76,57 @@
             android:name=".NutritionActivity"
             android:exported="false"
             android:label="Nutrition" />
-            
-        <activity
+              <activity
             android:name=".SettingsActivity"
             android:exported="false"
             android:label="Paramètres" />
-              <!-- Receivers pour les notifications -->
+            
+        <!-- Nouvelles activités wellness -->
+        <activity
+            android:name=".WeatherActivity"
+            android:exported="false"
+            android:label="Météo &amp; Soleil" />
+            
+        <activity
+            android:name=".WellnessHubActivity"
+            android:exported="false"
+            android:label="Hub Bien-être" />
+            
+        <activity
+            android:name=".MeditationActivity"
+            android:exported="false"
+            android:label="Méditation" />
+            
+        <activity
+            android:name=".HydrationTrackerActivity"
+            android:exported="false"
+            android:label="Suivi Hydratation" />
+            
+        <activity
+            android:name=".SleepAnalysisActivity"
+            android:exported="false"
+            android:label="Analyse Sommeil" />
+            
+        <activity
+            android:name=".MoodTrackerActivity"
+            android:exported="false"
+            android:label="Suivi Humeur" />
+              <activity
+            android:name=".BodyAnalysisActivity"
+            android:exported="false"
+            android:label="Analyse Corps" />
+            
+        <activity
+            android:name=".GymFinderActivity"
+            android:exported="false"
+            android:label="Trouver une Salle" />
+            
+        <activity
+            android:name=".GymDetailActivity"
+            android:exported="false"
+            android:label="Détails Salle" />
+              
+        <!-- Receivers pour les notifications -->
         <receiver android:name=".services.WaterReminderReceiver"
             android:exported="false" />
             
@@ -90,10 +135,9 @@
             
         <receiver android:name=".services.DailyHealthReminderReceiver"
             android:exported="false" />
-            
-        <!-- Service de notifications de santé -->
+              <!-- Service de notifications de santé -->
         <service android:name=".services.HealthNotificationService"
             android:exported="false" />
-    </application>
+          </application>
 
 </manifest>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- API 28+ specific theme attributes for lineHeight support -->
+    
+    <!-- Display Text Styles with lineHeight -->
+    <style name="Text.Display.Large">
+        <item name="android:lineHeight">40sp</item>
+    </style>
+    
+    <style name="Text.Display.Medium">
+        <item name="android:lineHeight">36sp</item>
+    </style>
+    
+    <style name="Text.Display.Small">
+        <item name="android:lineHeight">28sp</item>
+    </style>
+    
+    <!-- Headline Text Styles with lineHeight -->
+    <style name="Text.Headline.Large">
+        <item name="android:lineHeight">32sp</item>
+    </style>
+    
+    <style name="Text.Headline.Medium">
+        <item name="android:lineHeight">28sp</item>
+    </style>
+    
+    <style name="Text.Headline.Small">
+        <item name="android:lineHeight">24sp</item>
+    </style>
+    
+    <!-- Title Text Styles with lineHeight -->
+    <style name="Text.Title.Large">
+        <item name="android:lineHeight">24sp</item>
+    </style>
+    
+    <style name="Text.Title.Medium">
+        <item name="android:lineHeight">20sp</item>
+    </style>
+    
+    <style name="Text.Title.Small">
+        <item name="android:lineHeight">16sp</item>
+    </style>
+    
+    <!-- Body Text Styles with lineHeight -->
+    <style name="Text.Body.Large">
+        <item name="android:lineHeight">24sp</item>
+    </style>
+    
+    <style name="Text.Body.Medium">
+        <item name="android:lineHeight">20sp</item>
+    </style>
+    
+    <style name="Text.Body.Small">
+        <item name="android:lineHeight">16sp</item>
+    </style>
+    
+    <!-- Label Text Styles with lineHeight -->
+    <style name="Text.Label.Large">
+        <item name="android:lineHeight">20sp</item>
+    </style>
+    
+    <style name="Text.Label.Medium">
+        <item name="android:lineHeight">16sp</item>
+    </style>
+    
+    <style name="Text.Label.Small">
+        <item name="android:lineHeight">16sp</item>
+    </style>
+</resources>

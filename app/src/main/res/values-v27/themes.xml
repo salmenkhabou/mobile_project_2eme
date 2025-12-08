@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- API 27+ specific theme attributes -->
+    <style name="Base.Theme.Projet_android" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Light navigation bar for API 27+ -->
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>
