@@ -1,28 +1,75 @@
 package com.example.projet_android.models;
 
 /**
- * Modèle pour les données météorologiques
+ * ================================
+ * MODÈLE DE DONNÉES MÉTÉOROLOGIQUES
+ * ================================
+ * 
+ * Classe modèle représentant les données météorologiques complètes utilisées
+ * dans l'application Health Tracker pour fournir des conseils personnalisés.
+ * 
+ * DONNÉES MÉTÉO PRINCIPALES :
+ * • 🌡️ Température réelle et ressentie (°C)
+ * • 💧 Taux d'humidité atmosphérique (%)
+ * • 📊 Pression atmosphérique (hPa)
+ * • 💨 Vitesse et direction du vent
+ * • ☀️ Index UV pour protection solaire
+ * • ☁️ Couverture nuageuse (%)
+ * • 👁️ Visibilité atmosphérique
+ * 
+ * INFORMATIONS CONTEXTUELLES :
+ * • Condition météo générale (ensoleillé, pluvieux, etc.)
+ * • Description détaillée des conditions
+ * • Icône météo pour affichage visuel
+ * • Localisation (ville, pays)
+ * • Timestamp de récupération des données
+ * 
+ * UTILISATION DANS L'APP :
+ * • Conseils d'activité physique adaptés à la météo
+ * • Recommandations d'hydratation selon température/humidité
+ * • Alertes protection solaire basées sur l'index UV
+ * • Suggestions d'exercices intérieur/extérieur
+ * 
+ * @version 1.0
+ * @author Équipe Health Tracker
  */
-public class WeatherData {
-    private double temperature;
-    private double feelsLike;
-    private int humidity;
-    private double pressure;
-    private double windSpeed;
-    private int windDirection;
-    private double visibility;
-    private double uvIndex;
-    private int cloudCover;
-    private String weatherCondition;
-    private String weatherDescription;
-    private String weatherIcon;
-    private String cityName;
-    private String country;
-    private long timestamp;
+public class WeatherData {    // ============ DONNÉES MÉTÉOROLOGIQUES PRINCIPALES ============
+    private double temperature;        // Température en degrés Celsius
+    private double feelsLike;         // Température ressentie en °C
+    private int humidity;             // Taux d'humidité atmosphérique (0-100%)
+    private double pressure;          // Pression atmosphérique en hPa
+    private double windSpeed;         // Vitesse du vent en km/h
+    private int windDirection;        // Direction du vent en degrés (0-360°)
+    private double visibility;        // Visibilité en kilomètres
+    private double uvIndex;           // Index UV (0-11+) pour protection solaire
+    private int cloudCover;           // Couverture nuageuse en pourcentage (0-100%)
     
-    // Constructeurs
+    // ============ INFORMATIONS DESCRIPTIVES ============
+    private String weatherCondition;   // Condition principale (Clear, Rain, Clouds, etc.)
+    private String weatherDescription; // Description détaillée des conditions
+    private String weatherIcon;        // Code d'icône pour affichage visuel
+    
+    // ============ DONNÉES DE LOCALISATION ============
+    private String cityName;           // Nom de la ville
+    private String country;            // Code pays (ex: "FR", "US")
+    private long timestamp;            // Timestamp de récupération des données
+    
+    // ============ CONSTRUCTEURS ============
+    
+    /**
+     * Constructeur par défaut
+     * Utilisé pour la désérialisation JSON et l'initialisation vide
+     */
     public WeatherData() {}
     
+    /**
+     * Constructeur simplifié avec données essentielles
+     * Initialise automatiquement le timestamp à la création
+     * 
+     * @param temperature Température en degrés Celsius
+     * @param humidity Taux d'humidité (0-100%)
+     * @param weatherCondition Condition météorologique principale
+     */
     public WeatherData(double temperature, int humidity, String weatherCondition) {
         this.temperature = temperature;
         this.humidity = humidity;

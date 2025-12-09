@@ -29,6 +29,33 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
+ * Activité météorologique avec conseils wellness adaptés
+ * 
+ * Cette activité fournit des informations météo localisées avec focus santé :
+ * - Conditions météo actuelles avec géolocalisation automatique
+ * - Prévisions sur plusieurs jours avec impact sur l'activité physique
+ * - Conseils d'exercice adaptés aux conditions météo
+ * - Calcul de l'index UV et recommandations de protection
+ * - Heures de lever/coucher du soleil pour optimiser l'exposition
+ * - Alertes météo pour ajuster les activités outdoor
+ * 
+ * Fonctionnalités wellness intégrées :
+ * - Recommandations d'activités selon la température et l'humidité
+ * - Conseils d'hydratation adaptés à la chaleur
+ * - Suggestions d'exercices intérieurs vs extérieurs
+ * - Alertes pollution de l'air pour les sports outdoor
+ * - Optimisation de l'exposition solaire pour la vitamine D
+ * 
+ * Sources de données :
+ * - API OpenWeatherMap pour données météo précises
+ * - Service de géolocalisation Android intégré
+ * - Cache local pour fonctionnement hors ligne
+ * - Base de données de conseils contextuels
+ * 
+ * @author Équipe de développement Health Tracker
+ * @version 2.0
+ * @since 1.4
+ */
  * Activité dédiée aux informations météo et recommandations solaires
  */
 public class WeatherActivity extends AppCompatActivity implements WeatherService.WeatherDataListener, LocationListener {

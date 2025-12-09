@@ -91,30 +91,20 @@
             android:name=".WellnessHubActivity"
             android:exported="false"
             android:label="Hub Bien-être" />
+              <activity
+            android:name=".WaterTrackerActivity"
+            android:exported="false"
+            android:label="Water Tracker" />
             
         <activity
-            android:name=".MeditationActivity"
+            android:name=".SleepTrackerActivity"
             android:exported="false"
-            android:label="Méditation" />
-            
-        <activity
-            android:name=".HydrationTrackerActivity"
-            android:exported="false"
-            android:label="Suivi Hydratation" />
-            
-        <activity
-            android:name=".SleepAnalysisActivity"
-            android:exported="false"
-            android:label="Analyse Sommeil" />
+            android:label="Sleep Tracker" />
             
         <activity
             android:name=".MoodTrackerActivity"
             android:exported="false"
-            android:label="Suivi Humeur" />
-              <activity
-            android:name=".BodyAnalysisActivity"
-            android:exported="false"
-            android:label="Analyse Corps" />
+            android:label="Mood Tracker" />
             
         <activity
             android:name=".GymFinderActivity"

@@ -20,6 +20,35 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Gestionnaire central de la base de données SQLite locale
+ * 
+ * Cette classe singleton coordonne tous les accès à la base de données Room :
+ * - Gestion centralisée de tous les repositories (User, HealthData, FoodLog, Activity)
+ * - Interface unifiée pour les opérations CRUD sur toutes les entités
+ * - Gestion des relations entre tables et contraintes de clés étrangères
+ * - Support des opérations synchrones et asynchrones (LiveData)
+ * - Cache intelligent et optimisation des performances
+ * - Migration automatique de schéma et gestion des versions
+ * 
+ * Architecture Repository Pattern :
+ * - UserRepository : Gestion des comptes et profils utilisateur
+ * - HealthDataRepository : Données d'activité quotidienne (pas, calories, sommeil)
+ * - FoodLogRepository : Journal alimentaire et données nutritionnelles
+ * - ActivityRepository : Historique des exercices et séances d'entraînement
+ * 
+ * Fonctionnalités avancées :
+ * - Synchronisation bidirectionnelle avec Google Fit
+ * - Sauvegarde automatique et restauration de données
+ * - Nettoyage automatique des données anciennes
+ * - Support multi-utilisateur avec isolation des données
+ * - Validation des données avant insertion
+ * - Gestion des conflits et déduplication
+ * 
+ * @author Équipe de développement Health Tracker
+ * @version 2.1
+ * @since 1.2
+ */
 public class DatabaseManager {
     
     private static DatabaseManager instance;
@@ -102,28 +131,22 @@ public class DatabaseManager {
     public LiveData<HealthData> getTodaysHealthData(String userId) {
         String today = dateFormat.format(new Date());
         return healthDataRepository.getHealthDataForDate(userId, today);
-    }
-      public void updateTodaysSteps(String userId, int steps, int calories, float distance) {
+    }    public void updateTodaysSteps(String userId, int steps, int calories, float distance) {
         String today = dateFormat.format(new Date());
-        // S'assurer que l'utilisateur existe avant d'insérer des données
-        ensureUserExists(userId);
+        // The ensureUserExists is now handled synchronously within createOrUpdateTodaysData
         healthDataRepository.createOrUpdateTodaysData(userId, steps, calories, distance);
-    }
-      public void updateTodaysSleep(String userId, float sleepHours) {
+    }    public void updateTodaysSleep(String userId, float sleepHours) {
         String today = dateFormat.format(new Date());
-        ensureUserExists(userId);
         healthDataRepository.updateSleepData(userId, today, sleepHours);
     }
     
     public void updateTodaysWater(String userId, int waterGlasses) {
         String today = dateFormat.format(new Date());
-        ensureUserExists(userId);
         healthDataRepository.updateWaterIntake(userId, today, waterGlasses);
     }
     
     public void updateTodaysHeartRate(String userId, int heartRate) {
         String today = dateFormat.format(new Date());
-        ensureUserExists(userId);
         healthDataRepository.updateHeartRate(userId, today, heartRate);
     }
     

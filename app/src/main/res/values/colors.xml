@@ -209,4 +209,7 @@
     <color name="blue_primary">#3B82F6</color>
     <color name="surface_container">#F5F7FA</color>
     <color name="weather_primary">#06B6D4</color>
+    
+    <!-- Sleep Tracker Colors -->
+    <color name="sleep_dark">#4338CA</color>
 </resources>

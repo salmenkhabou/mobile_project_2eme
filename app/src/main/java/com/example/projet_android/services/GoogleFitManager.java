@@ -29,6 +29,36 @@ import com.example.projet_android.utils.PreferencesManager;
 
 import java.util.Calendar;
 import java.util.Date;
+
+/**
+ * Gestionnaire d'intégration Google Fit pour la synchronisation des données de santé
+ * 
+ * Cette classe service centralise toutes les interactions avec l'API Google Fit :
+ * - Authentification OAuth 2.0 avec Google
+ * - Synchronisation automatique des données d'activité (pas, calories, sommeil)
+ * - Gestion des permissions d'accès aux données de santé
+ * - Mode démo avec données simulées pour les tests
+ * - Écriture et lecture des données dans Google Fit
+ * - Gestion des erreurs et reconnexion automatique
+ * 
+ * Fonctionnalités avancées :
+ * - Cache intelligent pour éviter les appels API répétitifs
+ * - Synchronisation différée pour optimiser la batterie
+ * - Validation et nettoyage des données reçues
+ * - Intégration avec la base de données locale
+ * - Support multi-compte utilisateur
+ * 
+ * Types de données supportés :
+ * - Nombre de pas (DataType.TYPE_STEP_COUNT_DELTA)
+ * - Calories brûlées (DataType.TYPE_CALORIES_EXPENDED)
+ * - Durée de sommeil (DataType.TYPE_SLEEP_SEGMENT)
+ * - Fréquence cardiaque (DataType.TYPE_HEART_RATE_BPM)
+ * - Distance parcourue (DataType.TYPE_DISTANCE_DELTA)
+ * 
+ * @author Équipe de développement Health Tracker
+ * @version 3.0
+ * @since 1.0
+ */
 import java.util.concurrent.TimeUnit;
 import com.google.android.gms.fitness.data.Bucket;
 

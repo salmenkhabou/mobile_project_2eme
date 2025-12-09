@@ -21,7 +21,29 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-public class MoodTrackerActivity extends AppCompatActivity {    private TextView tvCurrentMood, tvMoodStreak, tvLastEntry, tvWeeklyMoodSummary;
+/**
+ * Activité de suivi et d'analyse de l'humeur quotidienne
+ * 
+ * Cette activité avancée permet aux utilisateurs de :
+ * - Enregistrer leur humeur quotidienne avec une échelle de 1-5
+ * - Ajouter des tags contextuels pour enrichir l'analyse
+ * - Suivre leur série de saisies consécutives
+ * - Analyser les tendances et patterns d'humeur
+ * - Recevoir des insights personnalisés et des recommandations
+ * - Accéder à l'historique détaillé des humeurs
+ * 
+ * Fonctionnalités analytiques :
+ * - Calcul automatique des moyennes hebdomadaires
+ * - Détection des tendances d'amélioration/dégradation
+ * - Recommandations adaptées selon les patterns
+ * - Système de points wellness pour encourager la régularité
+ * - Conseils personnalisés basés sur l'historique
+ * 
+ * @author Équipe de développement Health Tracker
+ * @version 2.1
+ * @since 1.5
+ */
+public class MoodTrackerActivity extends AppCompatActivity {private TextView tvCurrentMood, tvMoodStreak, tvLastEntry, tvWeeklyMoodSummary;
     private ImageView imgCurrentMood;
     private LinearLayout layoutMoodOptions, layoutMoodTags;
     private Button btnLogMood, btnMoodHistory, btnMoodInsights;

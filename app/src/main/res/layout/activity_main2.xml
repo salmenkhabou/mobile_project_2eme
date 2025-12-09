@@ -437,11 +437,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:layout_marginBottom="@dimen/space_sm"
-                    android:baselineAligned="false">
-
-                    <!-- Body Analysis Action -->
+                    android:baselineAligned="false">                    <!-- Water Tracker Action -->
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_body_analysis"
+                        android:id="@+id/card_water_tracker"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/card_height_small"
                         android:layout_weight="1"
@@ -458,20 +456,20 @@
                             android:orientation="horizontal"
                             android:gravity="center_vertical"
                             android:padding="@dimen/card_padding"
-                            android:background="@color/fitness_surface">
+                            android:background="@color/water_surface">
 
                             <ImageView
                                 android:layout_width="@dimen/icon_size_large"
                                 android:layout_height="@dimen/icon_size_large"
-                                android:src="@drawable/ic_body_analysis"
-                                app:tint="@color/fitness_primary"
+                                android:src="@drawable/ic_water_drop"
+                                app:tint="@color/water_primary"
                                 android:layout_marginEnd="@dimen/space_sm" />
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Body Analysis"
+                                android:text="Water Tracker"
                                 android:textAppearance="@style/Text.Title.Medium"
                                 android:textColor="@color/on_surface" />
 
@@ -566,11 +564,9 @@
 
                         </LinearLayout>
 
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <!-- Meditation Action -->
+                    </com.google.android.material.card.MaterialCardView>                    <!-- Sleep Tracker Action -->
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_meditation"
+                        android:id="@+id/card_sleep_tracker"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/card_height_small"
                         android:layout_weight="1"
@@ -587,20 +583,20 @@
                             android:orientation="horizontal"
                             android:gravity="center_vertical"
                             android:padding="@dimen/card_padding"
-                            android:background="@color/meditation_surface">
+                            android:background="@color/sleep_surface">
 
                             <ImageView
                                 android:layout_width="@dimen/icon_size_large"
                                 android:layout_height="@dimen/icon_size_large"
-                                android:src="@drawable/ic_meditation"
-                                app:tint="@color/meditation_primary"
+                                android:src="@drawable/ic_sleep"
+                                app:tint="@color/sleep_primary"
                                 android:layout_marginEnd="@dimen/space_sm" />
 
                             <TextView
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:text="Meditation"
+                                android:text="Sleep Tracker"
                                 android:textAppearance="@style/Text.Title.Medium"
                                 android:textColor="@color/on_surface" />
 

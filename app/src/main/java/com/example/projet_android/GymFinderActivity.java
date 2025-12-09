@@ -29,6 +29,36 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
+
+/**
+ * Activité de recherche et localisation de salles de sport à proximité
+ * 
+ * Cette activité propose une interface complète pour trouver des gyms :
+ * - Géolocalisation automatique de l'utilisateur
+ * - Recherche de salles dans un rayon configurable
+ * - Filtrage par type d'établissement (gym, fitness, crossfit, yoga, etc.)
+ * - Recherche textuelle par nom ou adresse
+ * - Affichage en liste avec détails (horaires, note, distance)
+ * - Navigation GPS vers la salle sélectionnée
+ * - Intégration Google Maps pour visualisation
+ * 
+ * Fonctionnalités avancées :
+ * - Mode hors ligne avec données démo prédéfinies
+ * - Cache intelligent des résultats de recherche
+ * - Gestion robuste des permissions de géolocalisation
+ * - Interface responsive avec SwipeRefreshLayout
+ * - Diagnostics intégrés pour débogage
+ * - Fallback automatique en cas d'erreur API
+ * 
+ * Sources de données :
+ * - API Google Places (mode en ligne)
+ * - Base de données locale de gyms populaires (mode démo)
+ * - Cache persistant pour optimiser les performances
+ * 
+ * @author Équipe de développement Health Tracker
+ * @version 2.1 (Corrigé)
+ * @since 1.3
+ */
 import java.util.List;
 
 public class GymFinderActivity extends AppCompatActivity implements GymAdapter.OnGymClickListener {
@@ -51,18 +81,24 @@ public class GymFinderActivity extends AppCompatActivity implements GymAdapter.O
     private GymFinderService gymFinderService;
     private Location currentLocation;
     private String currentSearchQuery = "";
-    private String selectedFilter = "all";
-
-    @Override
+    private String selectedFilter = "all";    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gym_finder);
         
-        initializeViews();
-        setupServices();
-        setupRecyclerView();
-        setupSearchAndFilters();
-        checkLocationPermission();
+        try {
+            setContentView(R.layout.activity_gym_finder);
+            Toast.makeText(this, "Gym Finder Activity started!", Toast.LENGTH_SHORT).show();
+            
+            initializeViews();
+            setupServices();
+            setupRecyclerView();
+            setupSearchAndFilters();
+            checkLocationPermission();
+        } catch (Exception e) {
+            Toast.makeText(this, "Error in Gym Finder: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            e.printStackTrace();
+            finish();
+        }
         
         // Set up toolbar
         if (getSupportActionBar() != null) {
@@ -82,11 +118,51 @@ public class GymFinderActivity extends AppCompatActivity implements GymAdapter.O
         btnMapView = findViewById(R.id.btnMapView);
         tvLocationStatus = findViewById(R.id.tvLocationStatus);
     }
+      private void setupServices() {
+        try {
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+            gymFinderService = new GymFinderService(this);
+            gymList = new ArrayList<>();
+        } catch (Exception e) {
+            Toast.makeText(this, "Services setup failed, loading demo data", Toast.LENGTH_SHORT).show();
+            gymList = new ArrayList<>();
+            loadDemoGyms();
+        }
+    }
     
-    private void setupServices() {
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
-        gymFinderService = new GymFinderService(this);
-        gymList = new ArrayList<>();
+    private void loadDemoGyms() {
+        // Ajouter des salles de sport de démonstration
+        gymList.clear();
+        
+        Gym gym1 = new Gym();
+        gym1.setName("FitGym Center");
+        gym1.setAddress("123 Rue de la Santé, Paris");
+        gym1.setDistance(0.8f);
+        gym1.setRating(4.5f);
+        gym1.setPhoneNumber("01 23 45 67 89");
+        gymList.add(gym1);
+        
+        Gym gym2 = new Gym();
+        gym2.setName("PowerSport Club");
+        gym2.setAddress("456 Avenue du Sport, Paris");
+        gym2.setDistance(1.2f);
+        gym2.setRating(4.2f);
+        gym2.setPhoneNumber("01 98 76 54 32");
+        gymList.add(gym2);
+        
+        Gym gym3 = new Gym();
+        gym3.setName("Wellness Fitness");
+        gym3.setAddress("789 Boulevard de la Forme, Paris");
+        gym3.setDistance(2.1f);
+        gym3.setRating(4.7f);
+        gym3.setPhoneNumber("01 11 22 33 44");
+        gymList.add(gym3);
+        
+        if (gymAdapter != null) {
+            gymAdapter.notifyDataSetChanged();
+        }
+        
+        Toast.makeText(this, "Loaded " + gymList.size() + " demo gyms", Toast.LENGTH_SHORT).show();
     }
     
     private void setupRecyclerView() {
@@ -176,8 +252,7 @@ public class GymFinderActivity extends AppCompatActivity implements GymAdapter.O
                 LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
-    
-    @Override
+      @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, 
                                          @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -186,8 +261,10 @@ public class GymFinderActivity extends AppCompatActivity implements GymAdapter.O
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getCurrentLocationAndSearch();
             } else {
-                tvLocationStatus.setText("Permission de localisation refusée. Utilisation de Paris comme localisation par défaut.");
+                tvLocationStatus.setText("Permission de localisation refusée. Chargement des salles de démonstration.");
                 tvLocationStatus.setVisibility(View.VISIBLE);
+                // Charger les données de démonstration si les permissions sont refusées
+                loadDemoGyms();
                 // Use default location (Paris)
                 searchGymsAtLocation(48.8566, 2.3522);
             }

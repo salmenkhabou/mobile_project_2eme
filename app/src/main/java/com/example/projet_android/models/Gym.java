@@ -1,20 +1,64 @@
 package com.example.projet_android.models;
 
+/**
+ * Modèle de données pour représenter une salle de sport
+ * 
+ * Cette classe POJO encapsule toutes les informations d'une salle de sport :
+ * - Informations de base (nom, adresse, coordonnées GPS)
+ * - Données de proximité et accessibilité (distance, horaires, statut ouverture)
+ * - Informations commerciales (tarifs, évaluation, contact)
+ * - Détails techniques (équipements, type d'établissement)
+ * 
+ * Utilisée par le GymFinderActivity pour afficher et trier les résultats
+ * de recherche. Compatible avec les APIs Google Places et données démo locales.
+ * 
+ * @author Équipe de développement Health Tracker
+ * @version 2.1
+ * @since 1.3
+ */
 public class Gym {
+    
+    /** Identifiant unique de la salle (Google Places ID ou local ID) */
     private String id;
+    
+    /** Nom commercial de la salle de sport */
     private String name;
+    
+    /** Adresse complète formatée */
     private String address;
+    
+    /** Coordonnées géographiques pour géolocalisation */
     private double latitude;
     private double longitude;
-    private double distance; // in kilometers
+    
+    /** Distance calculée depuis position utilisateur (en kilomètres) */
+    private double distance;
+    
+    /** Note moyenne des utilisateurs sur 5 étoiles */
     private float rating;
+    
+    /** Numéro de téléphone pour contact direct */
     private String phoneNumber;
+    
+    /** Site web de l'établissement */
     private String website;
+    
+    /** Horaires d'ouverture formatés */
     private String openingHours;
+    
+    /** Statut d'ouverture actuel (ouvert/fermé) */
     private boolean isOpen;
-    private String gymType; // "Public", "Private", "Chain", "Boutique"
+    
+    /** Type d'établissement : "Public", "Private", "Chain", "Boutique" */
+    private String gymType;
+    
+    /** Liste des équipements disponibles */
     private String[] amenities;
+    
+    /** Prix d'abonnement mensuel moyen */
     private double monthlyPrice;
+    
+    /** URL image représentative de l'établissement */
     private String imageUrl;
 
     public Gym() {

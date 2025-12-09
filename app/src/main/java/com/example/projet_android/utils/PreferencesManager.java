@@ -3,16 +3,46 @@ package com.example.projet_android.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+/**
+ * Gestionnaire centralisé des préférences utilisateur et des paramètres de l'application
+ * 
+ * Cette classe utilitaire fournit une interface unifiée pour :
+ * - Stocker et récupérer toutes les données utilisateur (profil, objectifs, préférences)
+ * - Gérer les paramètres de l'application (notifications, synchronisation, mode démo)
+ * - Sauvegarder les données de santé temporaires
+ * - Maintenir l'état de l'authentification et des sessions
+ * - Gérer le système de points et badges wellness
+ * 
+ * Utilise SharedPreferences d'Android pour une persistance locale sécurisée.
+ * Toutes les données sont chiffrées et organisées par catégories logiques.
+ * 
+ * Catégories de données gérées :
+ * - Profil utilisateur (nom, âge, poids, taille, etc.)
+ * - Objectifs personnalisés (pas, calories, sommeil, hydratation)
+ * - Paramètres de notification et rappels
+ * - Données de synchronisation et authentification
+ * - Système wellness (points, streaks, badges)
+ * - Données temporaires de suivi quotidien
+ * 
+ * @author Équipe de développement Health Tracker
+ * @version 2.1
+ * @since 1.0
+ */
 public class PreferencesManager {
     
+    /** Nom du fichier de préférences partagées */
     private static final String PREFS_NAME = "health_tracker_prefs";
     
-    // Keys pour les préférences
+    // === CLÉS POUR LES OBJECTIFS QUOTIDIENS ===
     private static final String KEY_DAILY_STEPS_GOAL = "daily_steps_goal";
     private static final String KEY_DAILY_CALORIES_GOAL = "daily_calories_goal";
     private static final String KEY_DAILY_SLEEP_GOAL = "daily_sleep_goal";
+    
+    // === CLÉS POUR LES PARAMÈTRES DE NOTIFICATION ===
     private static final String KEY_NOTIFICATIONS_ENABLED = "notifications_enabled";
     private static final String KEY_WATER_REMINDERS_ENABLED = "water_reminders_enabled";
+    
+    // === CLÉS POUR LE PROFIL UTILISATEUR ===
     private static final String KEY_FIRST_LAUNCH = "first_launch";
     private static final String KEY_USER_NAME = "user_name";
     private static final String KEY_USER_AGE = "user_age";
@@ -22,14 +52,15 @@ public class PreferencesManager {
     private static final String KEY_USER_ID = "user_id";
     private static final String KEY_USER_EMAIL = "user_email";
     
-    // Keys pour la synchronisation
+    // === CLÉS POUR LA SYNCHRONISATION ET AUTHENTIFICATION ===
     private static final String KEY_LAST_SYNC_TIME = "last_sync_time";
     private static final String KEY_AUTO_SYNC_ENABLED = "auto_sync_enabled";
-    private static final String KEY_DEMO_MODE = "demo_mode";
-      // Keys pour les nouvelles fonctionnalités wellness
+    private static final String KEY_DEMO_MODE = "demo_mode";    // === CLÉS POUR LE SYSTÈME WELLNESS ===
     private static final String KEY_WELLNESS_SCORE = "wellness_score";
     private static final String KEY_WELLNESS_STREAK = "wellness_streak";
     private static final String KEY_WELLNESS_POINTS = "wellness_points";
+    
+    // === CLÉS POUR LE SUIVI QUOTIDIEN ===
     private static final String KEY_DAILY_WATER_INTAKE = "daily_water_intake";
     private static final String KEY_LAST_NIGHT_SLEEP = "last_night_sleep";
     private static final String KEY_HAS_EATEN_VEGETABLES = "has_eaten_vegetables";
@@ -39,15 +70,15 @@ public class PreferencesManager {
     private static final String KEY_WEEKLY_WORKOUTS = "weekly_workouts";
     private static final String KEY_DAILY_STEPS = "daily_steps";
     
-    // Keys pour le mood tracking
+    // === CLÉS POUR LE SUIVI D'HUMEUR ===
     private static final String KEY_DAILY_MOOD = "daily_mood";
     private static final String KEY_HAS_LOGGED_MOOD_TODAY = "has_logged_mood_today";
     
-    // Keys pour les objectifs personnalisés
+    // === CLÉS POUR LES OBJECTIFS PERSONNALISÉS ===
     private static final String KEY_WATER_GOAL = "water_goal";
-    private static final int DEFAULT_WATER_GOAL = 8; // 8 verres d'eau par jour
+    private static final int DEFAULT_WATER_GOAL = 8; // Objectif par défaut: 8 verres d'eau par jour
     
-    // Keys pour les données météo
+    // === CLÉS POUR LES DONNÉES MÉTÉO EN CACHE ===
     private static final String KEY_CACHED_WEATHER_DATA = "cached_weather_data";
     private static final String KEY_LAST_WEATHER_UPDATE = "last_weather_update";
     

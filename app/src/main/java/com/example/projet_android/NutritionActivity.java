@@ -22,6 +22,42 @@ import com.journeyapps.barcodescanner.ScanOptions;
 
 import androidx.activity.result.ActivityResultLauncher;
 
+/**
+ * Activité de suivi nutritionnel avancé avec scan de codes-barres
+ * 
+ * Cette activité propose un système complet de tracking nutritionnel :
+ * - Scan de codes-barres pour identification automatique des aliments
+ * - Base de données nutritionnelle extensive (OpenFoodFacts)
+ * - Calcul automatique des apports journaliers (calories, macros, micros)
+ * - Suivi des objectifs nutritionnels personnalisés
+ * - Journal alimentaire détaillé avec historique
+ * - Analyse des tendances et recommendations personnalisées
+ * 
+ * Fonctionnalités avancées :
+ * - Reconnaissance de plus de 2 millions de produits alimentaires
+ * - Calcul intelligent des portions et ajustement des valeurs
+ * - Alerts nutritionnelles (excès de sucre, manque de protéines, etc.)
+ * - Intégration avec les objectifs de poids et composition corporelle
+ * - Suggestions de repas équilibrés basées sur l'historique
+ * - Mode hors ligne avec cache local des produits fréquents
+ * 
+ * Sources de données :
+ * - API OpenFoodFacts pour la base nutritionnelle mondiale
+ * - Scanner de codes-barres intégré (ZXing)
+ * - Base de données locale pour les aliments personnalisés
+ * - Algorithmes de recommendation nutritionnelle
+ * 
+ * Métriques suivies :
+ * - Calories totales et par repas
+ * - Macronutriments (protéines, glucides, lipides)
+ * - Micronutriments essentiels (vitamines, minéraux)
+ * - Index glycémique et charge glycémique
+ * - Fibres, sodium, sucres ajoutés
+ * 
+ * @author Équipe de développement Health Tracker
+ * @version 2.0
+ * @since 1.1
+ */
 public class NutritionActivity extends AppCompatActivity implements NutritionManager.NutritionListener {
     
     private TextView productNameTextView;

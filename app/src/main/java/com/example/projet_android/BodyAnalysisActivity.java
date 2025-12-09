@@ -21,154 +21,240 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * Activité d'analyse corporelle - permet aux utilisateurs de suivre et analyser
+ * leurs mesures corporelles (poids, taille, IMC, masse grasse, etc.)
+ * 
+ * Fonctionnalités principales :
+ * - Calcul automatique de l'IMC (Indice de Masse Corporelle)
+ * - Suivi des objectifs de poids
+ * - Analyse de la composition corporelle
+ * - Score de santé personnalisé
+ * - Conseils santé personnalisés
+ * - Intégration avec le système de points wellness
+ * 
+ * @author Équipe de développement Health Tracker
+ * @version 2.1
+ * @since 1.0
+ */
 public class BodyAnalysisActivity extends AppCompatActivity {
+    
+    // === COMPOSANTS DE L'INTERFACE UTILISATEUR ===
+    
+    /** Éléments d'affichage des données corporelles */
     private TextView tvBMI, tvBMICategory, tvWeight, tvHeight, tvBodyFat, tvMuscleMass;
+    
+    /** Éléments d'affichage du suivi et des objectifs */
     private TextView tvLastUpdate, tvWeightGoal, tvProgressToGoal, tvHealthScore;
+    
+    /** Barres de progression pour visualiser les objectifs */
     private ProgressBar progressWeightGoal, progressBMI;
+    
+    /** Icône représentant le statut corporel actuel */
     private ImageView imgBodyStatus;
+    
+    /** Boutons d'édition des mesures individuelles */
     private com.google.android.material.button.MaterialButton btnEditWeight, btnEditHeight, btnEditBodyFat;
+    
+    /** Boutons d'actions principales */
     private com.google.android.material.button.MaterialButton btnUpdateMeasurements, btnGoals, btnHistory, btnTips;
+    
+    /** Cartes contenant les différentes sections de l'interface */
     private com.google.android.material.card.MaterialCardView cardHealthDashboard, cardMeasurements, cardGoals;
     
-    private PreferencesManager preferencesManager;
-    private double currentWeight = 0.0;
-    private double currentHeight = 0.0;
-    private double currentBodyFat = 0.0;
-    private double currentMuscleMass = 0.0;
-    private double weightGoal = 0.0;
-    private double bmi = 0.0;
-    private int healthScore = 0;
+    // === GESTIONNAIRES ET DONNÉES ===
     
-    private DecimalFormat df = new DecimalFormat("#.#");
-
+    /** Gestionnaire des préférences utilisateur */
+    private PreferencesManager preferencesManager;
+    
+    /** Variables stockant les mesures corporelles actuelles */
+    private double currentWeight = 0.0;      // Poids actuel en kg
+    private double currentHeight = 0.0;      // Taille actuelle en cm
+    private double currentBodyFat = 0.0;     // Pourcentage de masse grasse
+    private double currentMuscleMass = 0.0;  // Masse musculaire estimée en kg
+    private double weightGoal = 0.0;         // Objectif de poids en kg
+    private double bmi = 0.0;                // Indice de Masse Corporelle calculé
+    private int healthScore = 0;             // Score de santé sur 100
+    
+    /** Formateur pour l'affichage des nombres décimaux */
+    private DecimalFormat df = new DecimalFormat("#.#");    /**
+     * Méthode appelée lors de la création de l'activité
+     * Initialise l'interface, charge les données et configure les interactions
+     * 
+     * @param savedInstanceState État sauvegardé de l'activité (peut être null)
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_body_analysis);
         
+        // Initialisation du gestionnaire de préférences
         preferencesManager = new PreferencesManager(this);
         
-        initializeViews();
-        setupClickListeners();
-        loadData();
-        updateUI();
+        // Séquence d'initialisation de l'activité
+        initializeViews();        // Liaison des composants UI
+        setupClickListeners();    // Configuration des interactions
+        loadData();              // Chargement des données utilisateur
+        updateUI();              // Mise à jour de l'affichage
         
-        // Set up toolbar/action bar
+        // Configuration de la barre d'outils avec bouton de retour
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Body Analysis");
+            getSupportActionBar().setTitle("Analyse Corporelle");
         }
-    }
-      private void initializeViews() {
+    }    /**
+     * Initialise tous les composants de l'interface utilisateur
+     * Lie les variables Java aux éléments XML du layout
+     */
+    private void initializeViews() {
+        // Éléments d'affichage des données IMC et catégorie
         tvBMI = findViewById(R.id.tvBMI);
         tvBMICategory = findViewById(R.id.tvBMICategory);
+        
+        // Éléments d'affichage des mesures corporelles
         tvWeight = findViewById(R.id.tvWeight);
         tvHeight = findViewById(R.id.tvHeight);
         tvBodyFat = findViewById(R.id.tvBodyFat);
         tvMuscleMass = findViewById(R.id.tvMuscleMass);
+        
+        // Éléments d'affichage du suivi et des objectifs
         tvLastUpdate = findViewById(R.id.tvLastUpdate);
         tvWeightGoal = findViewById(R.id.tvWeightGoal);
         tvProgressToGoal = findViewById(R.id.tvProgressToGoal);
         tvHealthScore = findViewById(R.id.tvHealthScore);
+        
+        // Barres de progression
         progressWeightGoal = findViewById(R.id.progressWeightGoal);
         progressBMI = findViewById(R.id.progressBMI);
+        
+        // Icône de statut
         imgBodyStatus = findViewById(R.id.imgBodyStatus);
+        
+        // Boutons d'édition des mesures
         btnEditWeight = findViewById(R.id.btnEditWeight);
         btnEditHeight = findViewById(R.id.btnEditHeight);
         btnEditBodyFat = findViewById(R.id.btnEditBodyFat);
+        
+        // Boutons d'actions principales
         btnUpdateMeasurements = findViewById(R.id.btnUpdateMeasurements);
         btnGoals = findViewById(R.id.btnGoals);
         btnHistory = findViewById(R.id.btnHistory);
         btnTips = findViewById(R.id.btnTips);
+        
+        // Cartes de sections
         cardHealthDashboard = findViewById(R.id.cardHealthDashboard);
         cardMeasurements = findViewById(R.id.cardMeasurements);
         cardGoals = findViewById(R.id.cardGoals);
-    }
-      private void setupClickListeners() {
-        btnEditWeight.setOnClickListener(v -> showEditDialog("Weight", "kg", currentWeight, this::updateWeight));
-        btnEditHeight.setOnClickListener(v -> showEditDialog("Height", "cm", currentHeight, this::updateHeight));
-        btnEditBodyFat.setOnClickListener(v -> showEditDialog("Body Fat", "%", currentBodyFat, this::updateBodyFat));
+    }    /**
+     * Configure les écouteurs d'événements pour tous les boutons et cartes interactives
+     * Définit les actions à exécuter lors des clics utilisateur
+     */
+    private void setupClickListeners() {
+        // Boutons d'édition des mesures individuelles
+        btnEditWeight.setOnClickListener(v -> showEditDialog("Poids", "kg", currentWeight, this::updateWeight));
+        btnEditHeight.setOnClickListener(v -> showEditDialog("Taille", "cm", currentHeight, this::updateHeight));
+        btnEditBodyFat.setOnClickListener(v -> showEditDialog("Masse Grasse", "%", currentBodyFat, this::updateBodyFat));
+        
+        // Boutons d'actions principales
         btnUpdateMeasurements.setOnClickListener(v -> showUpdateMeasurementsDialog());
         btnGoals.setOnClickListener(v -> showGoalsDialog());
         btnHistory.setOnClickListener(v -> showHistory());
         btnTips.setOnClickListener(v -> showHealthTips());
+        
+        // Interaction avec le tableau de bord santé
         cardHealthDashboard.setOnClickListener(v -> showHealthDetails());
     }
-    
+      /**
+     * Charge toutes les données utilisateur depuis les préférences
+     * Effectue les calculs automatiques (IMC, masse musculaire, score de santé)
+     */
     private void loadData() {
+        // Chargement des données corporelles depuis les préférences
         currentWeight = preferencesManager.getCurrentWeight();
         currentHeight = preferencesManager.getCurrentHeight();
         currentBodyFat = preferencesManager.getBodyFatPercentage();
         currentMuscleMass = preferencesManager.getMuscleMass();
         weightGoal = preferencesManager.getWeightGoal();
         
-        // Calculate BMI if we have height and weight
+        // Calcul de l'IMC si on a le poids et la taille
         if (currentWeight > 0 && currentHeight > 0) {
-            double heightInMeters = currentHeight / 100.0;
-            bmi = currentWeight / (heightInMeters * heightInMeters);
+            double heightInMeters = currentHeight / 100.0; // Conversion cm -> m
+            bmi = currentWeight / (heightInMeters * heightInMeters); // Formule IMC = poids/taille²
         }
         
-        // Calculate muscle mass if we have weight and body fat
+        // Calcul estimé de la masse musculaire si on a le poids et le % de graisse
         if (currentWeight > 0 && currentBodyFat > 0) {
-            currentMuscleMass = currentWeight * (1 - currentBodyFat / 100) * 0.5; // Simplified calculation
+            // Calcul simplifié : masse maigre * facteur muscle (≈50% de la masse maigre)
+            currentMuscleMass = currentWeight * (1 - currentBodyFat / 100) * 0.5;
             preferencesManager.setMuscleMass(currentMuscleMass);
         }
         
-        // Calculate health score
+        // Calcul du score de santé global
         calculateHealthScore();
     }
-    
+      /**
+     * Calcule le score de santé global basé sur plusieurs critères
+     * Score sur 100 points répartis comme suit :
+     * - IMC : 30 points max
+     * - Composition corporelle : 25 points max  
+     * - Progression vers l'objectif : 25 points max
+     * - Régularité du suivi : 20 points max
+     */
     private void calculateHealthScore() {
         healthScore = 0;
         
-        // BMI Score (0-30 points)
+        // === SCORE IMC (0-30 points) ===
         if (bmi > 0) {
             if (bmi >= 18.5 && bmi <= 24.9) {
-                healthScore += 30; // Optimal BMI
+                healthScore += 30; // IMC optimal (normal)
             } else if (bmi >= 17.5 && bmi <= 27.0) {
-                healthScore += 20; // Good BMI
+                healthScore += 20; // IMC correct (légèrement en dehors de la normale)
             } else if (bmi >= 16.0 && bmi <= 30.0) {
-                healthScore += 10; // Acceptable BMI
+                healthScore += 10; // IMC acceptable (modérément éloigné)
             }
+            // Sinon 0 point (IMC très éloigné de la normale)
         }
         
-        // Body Fat Score (0-25 points)
+        // === SCORE COMPOSITION CORPORELLE (0-25 points) ===
         if (currentBodyFat > 0) {
             if (currentBodyFat >= 10 && currentBodyFat <= 20) {
-                healthScore += 25; // Optimal body fat
+                healthScore += 25; // Taux de graisse optimal
             } else if (currentBodyFat >= 8 && currentBodyFat <= 25) {
-                healthScore += 15; // Good body fat
+                healthScore += 15; // Taux de graisse correct
             } else if (currentBodyFat >= 5 && currentBodyFat <= 30) {
-                healthScore += 10; // Acceptable body fat
+                healthScore += 10; // Taux de graisse acceptable
             }
         }
         
-        // Weight Goal Progress Score (0-25 points)
+        // === SCORE PROGRESSION OBJECTIF (0-25 points) ===
         if (weightGoal > 0 && currentWeight > 0) {
+            // Calcul de l'écart relatif par rapport à l'objectif
             double progressPercent = Math.abs(currentWeight - weightGoal) / weightGoal;
-            if (progressPercent <= 0.05) { // Within 5%
+            if (progressPercent <= 0.05) {        // À moins de 5% de l'objectif
                 healthScore += 25;
-            } else if (progressPercent <= 0.10) { // Within 10%
+            } else if (progressPercent <= 0.10) { // À moins de 10% de l'objectif
                 healthScore += 15;
-            } else if (progressPercent <= 0.20) { // Within 20%
+            } else if (progressPercent <= 0.20) { // À moins de 20% de l'objectif
                 healthScore += 10;
             }
         }
         
-        // Consistency Score (0-20 points)
+        // === SCORE RÉGULARITÉ (0-20 points) ===
         long lastUpdate = preferencesManager.getLastBodyAnalysisUpdate();
         if (lastUpdate > 0) {
+            // Calcul du nombre de jours depuis la dernière mise à jour
             long daysSinceUpdate = (System.currentTimeMillis() - lastUpdate) / (24 * 60 * 60 * 1000);
-            if (daysSinceUpdate <= 7) {
+            if (daysSinceUpdate <= 7) {      // Mis à jour cette semaine
                 healthScore += 20;
-            } else if (daysSinceUpdate <= 14) {
+            } else if (daysSinceUpdate <= 14) { // Mis à jour dans les 2 semaines
                 healthScore += 10;
-            } else if (daysSinceUpdate <= 30) {
+            } else if (daysSinceUpdate <= 30) { // Mis à jour ce mois-ci
                 healthScore += 5;
             }
         }
         
-        healthScore = Math.min(100, healthScore); // Cap at 100
+        // Plafonner le score à 100 points maximum
+        healthScore = Math.min(100, healthScore);
     }
     
     private void updateUI() {

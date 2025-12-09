@@ -24,6 +24,28 @@ import com.example.projet_android.database.entities.HealthData;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.Observer;
 
+/**
+ * Activité principale du tableau de bord de l'application Health Tracker
+ * 
+ * Cette activité constitue le cœur de l'application et fournit :
+ * - Vue d'ensemble des données de santé du jour (pas, calories, sommeil)
+ * - Navigation vers toutes les fonctionnalités de l'app
+ * - Intégration Google Fit pour synchronisation automatique
+ * - Système de notifications intelligentes
+ * - Gestion de l'authentification utilisateur
+ * - Tableau de bord wellness avec points et objectifs
+ * 
+ * Fonctionnalités intégrées :
+ * - Suivi d'activité en temps réel
+ * - Synchronisation avec base de données locale
+ * - Mode démo pour tests sans Google Fit
+ * - Notifications d'objectifs atteints
+ * - Navigation vers modules spécialisés (nutrition, sommeil, humeur, etc.)
+ * 
+ * @author Équipe de développement Health Tracker
+ * @version 2.1
+ * @since 1.0
+ */
 public class MainActivity2 extends AppCompatActivity implements GoogleFitManager.FitnessDataListener, GoogleFitManager.AuthenticationListener {
     
     private TextView welcomeTextView;
@@ -32,13 +54,17 @@ public class MainActivity2 extends AppCompatActivity implements GoogleFitManager
     private MaterialButton viewStepsButton;
     private MaterialButton viewCaloriesButton;    
     private MaterialButton viewSleepButton;
-    private MaterialButton calendarButton;
-    private TextView nutritionButton;
+    private MaterialButton calendarButton;    private TextView nutritionButton;
     private TextView settingsButton;
     private TextView wellnessHubButton;
     private TextView weatherButton;
     private TextView gymFinderButton;
     private MaterialButton connectGoogleFitButton;
+    
+    // New card variables
+    private View cardWaterTracker;
+    private View cardMoodTracker;
+    private View cardSleepTracker;
     private TextView authStatusTextView;
     private GoogleFitManager googleFitManager;
     private PreferencesManager preferencesManager;
@@ -80,8 +106,12 @@ public class MainActivity2 extends AppCompatActivity implements GoogleFitManager
         nutritionButton = findViewById(R.id.btn_nutrition);
         settingsButton = findViewById(R.id.btn_settings);
         wellnessHubButton = findViewById(R.id.btn_wellness_hub);
-        weatherButton = findViewById(R.id.btn_weather);
-        gymFinderButton = findViewById(R.id.btn_gym_finder);
+        weatherButton = findViewById(R.id.btn_weather);        gymFinderButton = findViewById(R.id.btn_gym_finder);
+        
+        // Initialize new card views
+        cardWaterTracker = findViewById(R.id.card_water_tracker);
+        cardMoodTracker = findViewById(R.id.card_mood_tracker);
+        cardSleepTracker = findViewById(R.id.card_sleep_tracker);
         
         // Try to find the optional Google Fit connection elements
         connectGoogleFitButton = findViewById(R.id.btn_connect_google_fit);
@@ -172,12 +202,50 @@ public class MainActivity2 extends AppCompatActivity implements GoogleFitManager
                 }
             });
         }
-        
-        if (gymFinderButton != null) {
+          if (gymFinderButton != null) {
             gymFinderButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(MainActivity2.this, GymFinderActivity.class);
+                    try {
+                        Toast.makeText(MainActivity2.this, "Launching Gym Finder...", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(MainActivity2.this, GymFinderActivity.class);
+                        startActivity(intent);
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity2.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                        e.printStackTrace();
+                    }
+                }
+            });
+        } else {
+            // Debug: Le bouton n'est pas trouvé
+            Toast.makeText(this, "Gym Finder button not found!", Toast.LENGTH_LONG).show();
+        }
+          // New card click listeners
+        if (cardWaterTracker != null) {
+            cardWaterTracker.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity2.this, WaterTrackerActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+        
+        if (cardMoodTracker != null) {
+            cardMoodTracker.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity2.this, MoodTrackerActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
+        
+        if (cardSleepTracker != null) {
+            cardSleepTracker.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity2.this, SleepTrackerActivity.class);
                     startActivity(intent);
                 }
             });

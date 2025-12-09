@@ -17,23 +17,78 @@ import com.example.projet_android.services.NotificationHelper;
 import com.example.projet_android.services.HealthNotificationManager;
 import com.example.projet_android.utils.PreferencesManager;
 
+/**
+ * ================================
+ * ACTIVITÉ PARAMÈTRES ET CONFIGURATION
+ * ================================
+ * 
+ * Interface principale pour la configuration de l'application Health Tracker.
+ * Permet aux utilisateurs de personnaliser leur profil et leurs préférences.
+ * 
+ * FONCTIONNALITÉS PRINCIPALES :
+ * • 👤 Gestion du profil utilisateur (nom, âge, poids, taille)
+ * • 🎯 Configuration des objectifs personnalisés (pas, calories, sommeil)
+ * • 🔔 Paramètres de notifications et rappels
+ * • 💧 Activation/désactivation des rappels d'hydratation
+ * • 📊 Affichage de recommandations personnalisées basées sur le profil
+ * • 🔐 Fonction de déconnexion sécurisée
+ * 
+ * CONFIGURATION DU PROFIL :
+ * • Informations personnelles pour calculs de santé précis
+ * • Objectifs quotidiens personnalisables
+ * • Validation des données saisies
+ * • Sauvegarde automatique des modifications
+ * 
+ * GESTION DES NOTIFICATIONS :
+ * • Contrôle global des notifications push
+ * • Programmation automatique des rappels d'eau
+ * • Configuration des alertes de santé
+ * • Intégration avec HealthNotificationManager
+ * 
+ * RECOMMANDATIONS PERSONNALISÉES :
+ * • Calculs automatiques basés sur l'âge, poids, taille
+ * • Objectifs adaptés aux caractéristiques de l'utilisateur
+ * • Conseils de santé contextualisés
+ * • Mise à jour en temps réel lors des modifications
+ * 
+ * ARCHITECTURE :
+ * • Utilisation de PreferencesManager pour la persistance
+ * • Intégration avec les services de notification
+ * • Interface utilisateur intuitive avec validation
+ * • Gestion d'erreurs et feedback utilisateur
+ * 
+ * @version 1.0
+ * @author Équipe Health Tracker
+ */
 public class SettingsActivity extends AppCompatActivity {
+      // ============ COMPOSANTS INTERFACE UTILISATEUR ============
     
-    private EditText etUserName;
-    private EditText etUserAge;
-    private EditText etUserWeight;
-    private EditText etUserHeight;
-    private EditText etStepsGoal;
-    private EditText etCaloriesGoal;
-    private EditText etSleepGoal;
-    private Switch switchNotifications;
-    private Switch switchWaterReminders;    
-    private Button btnSaveSettings;
-    private Button btnLogout;
-    private TextView tvRecommendations;
-      private PreferencesManager preferencesManager;
-    private NotificationHelper notificationHelper;
-    private HealthNotificationManager healthNotificationManager;
+    // === Champs de saisie profil utilisateur ===
+    private EditText etUserName;          // Nom de l'utilisateur
+    private EditText etUserAge;           // Âge pour calculs de santé personnalisés
+    private EditText etUserWeight;        // Poids en kg pour IMC et métabolisme
+    private EditText etUserHeight;        // Taille en cm pour calculs corporels
+    
+    // === Champs objectifs personnalisés ===
+    private EditText etStepsGoal;         // Objectif quotidien de pas
+    private EditText etCaloriesGoal;      // Objectif quotidien de calories à brûler
+    private EditText etSleepGoal;         // Objectif de sommeil en heures
+    
+    // === Interrupteurs de configuration ===
+    private Switch switchNotifications;   // Activation/désactivation notifications globales
+    private Switch switchWaterReminders;  // Activation/désactivation rappels d'hydratation
+    
+    // === Boutons d'action ===
+    private Button btnSaveSettings;       // Sauvegarde des paramètres modifiés
+    private Button btnLogout;             // Déconnexion de l'application
+    
+    // === Affichage des recommandations ===
+    private TextView tvRecommendations;   // Zone d'affichage des conseils personnalisés
+    
+    // ============ SERVICES ET GESTIONNAIRES ============
+    private PreferencesManager preferencesManager;           // Gestionnaire de préférences utilisateur
+    private NotificationHelper notificationHelper;           // Helper pour notifications
+    private HealthNotificationManager healthNotificationManager;  // Gestionnaire notifications de santé
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
